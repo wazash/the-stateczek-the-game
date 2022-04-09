@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private new Rigidbody2D rigidbody;
+
+    [SerializeField] private HealthSystem healthSystem;
+
     [SerializeField] private float speed;
 
     private Camera activeCamera;
@@ -25,7 +29,15 @@ public class PlayerController : MonoBehaviour
             bottomLeftPosition.y, 
             topRightPosition.x - bottomLeftPosition.x, 
             topRightPosition.y - bottomLeftPosition.y);
+
+        healthSystem.OnHealthDepleted += OnHealthDepleted;
     }
+
+    private void OnDestroy()
+    {
+        healthSystem.OnHealthDepleted -= OnHealthDepleted;
+    }
+
 
     private void FixedUpdate()
     {
@@ -43,4 +55,10 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(transform.position.y, cameraBounds.yMin, cameraBounds.yMax),
             transform.position.z);
     }
+    
+    private void OnHealthDepleted()
+    {
+        Destroy(gameObject);
+    }
+
 }

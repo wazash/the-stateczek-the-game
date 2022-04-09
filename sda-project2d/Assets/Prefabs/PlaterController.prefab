@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 5122038409521647521}
   - component: {fileID: 5122038409521647522}
   - component: {fileID: 6177731254593400581}
+  - component: {fileID: 5897809319322213317}
   m_Layer: 6
   m_Name: PlaterController
   m_TagString: Untagged
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 5122038409521647522}
   rigidbody: {fileID: 5122038409521647523}
+  healthSystem: {fileID: 5897809319322213317}
   speed: 50
 --- !u!114 &5122038409521647522
 MonoBehaviour:
@@ -210,6 +212,19 @@ MonoBehaviour:
   - {fileID: 9074229883591546787}
   - {fileID: 6864996204215793103}
   bulletPrefab: {fileID: 5904869559835306018, guid: 893cf10cca6f3bf4581d46527e5ddcd2, type: 3}
+--- !u!114 &5897809319322213317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122038409521647525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f3f819f56ace64ca318549fa1098a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpAmountTotal: 3
 --- !u!1 &5122038410504771617
 GameObject:
   m_ObjectHideFlags: 0
