@@ -20,7 +20,9 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         foreach(var transformPosition in bulletPositions)
         {
-            Bullet bullet = Instantiate<Bullet>(bulletPrefab, transformPosition.position, Quaternion.identity);
+            Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transformPosition.position, Quaternion.identity);
+
+            createdBullet.Shoot(Vector3.right);
         }
     }
 }
