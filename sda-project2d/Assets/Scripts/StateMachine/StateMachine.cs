@@ -27,9 +27,4 @@ public class StateMachine : MonoBehaviour
 
         currentState?.EnterState(this);
     }
-
-    public void OnStartGameButtonPressed()
-    {
-        EnterState(new GameState());
-    }
 }

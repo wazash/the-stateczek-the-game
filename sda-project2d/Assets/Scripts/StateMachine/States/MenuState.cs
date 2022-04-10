@@ -7,11 +7,15 @@ public class MenuState : BaseState
     public override void EnterState(StateMachine stateMachine)
     {
         base.EnterState(stateMachine);
+
+        UIManager.Instance.ShowMainMenu();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        UIManager.Instance.HideMainMenu();
     }
 
     public override void UpdateState()

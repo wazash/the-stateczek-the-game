@@ -15,6 +15,8 @@ public class GameState : BaseState
         PlayerController.Instance.Respawn();
 
         CleanUpScene();
+
+        UIManager.Instance.ShowHUD();
     }
 
     public override void UpdateState()
@@ -35,6 +37,8 @@ public class GameState : BaseState
         PlayerController.Instance.OnPlayerDied -= PlayerInstance_OnPlayerDied;
 
         base.ExitState();
+
+        UIManager.Instance.HideHUD();
     }
 
     private void PlayerInstance_OnPlayerDied()
