@@ -23,27 +23,21 @@ public class UIManager : MonoBehaviour
     public void ShowMainMenu()
     {
         menuView.ShowView();
-    }
-    public void HideMainMenu()
-    {
-        menuView.HideView();
+        loseView.HideView();
+        hudView.HideView();
     }
 
     public void ShowHUD()
     {
         hudView.ShowView();
-    }
-    public void HideHUD()
-    {
-        hudView.HideView();
+        menuView.HideView();
+        loseView.HideView();
     }
 
     public  void ShowLoseScreen()
     {
         loseView.ShowView();
-    }
-    public void HideLoseScreen()
-    {
-        loseView.HideView();
+        menuView.HideView();
+        hudView.HideView();
     }
 }

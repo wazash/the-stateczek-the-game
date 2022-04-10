@@ -11,7 +11,10 @@ public abstract class BaseView : MonoBehaviour
 
     public virtual void HideView()
     {
-        gameObject.SetActive(false);
+        if(gameObject != null)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public RectTransform GetRect()

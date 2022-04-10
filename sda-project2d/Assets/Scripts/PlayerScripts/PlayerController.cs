@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 spawnPosition;
     private bool isPlayerDead = true;
 
+    public HealthSystem HealthSystem { get { return healthSystem; } }
+
     public void Respawn()
     {
         transform.position = spawnPosition;

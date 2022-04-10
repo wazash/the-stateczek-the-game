@@ -37,8 +37,6 @@ public class GameState : BaseState
         PlayerController.Instance.OnPlayerDied -= PlayerInstance_OnPlayerDied;
 
         base.ExitState();
-
-        UIManager.Instance.HideHUD();
     }
 
     private void PlayerInstance_OnPlayerDied()

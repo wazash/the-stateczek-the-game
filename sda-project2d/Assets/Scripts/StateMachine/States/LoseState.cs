@@ -14,8 +14,6 @@ public class LoseState : BaseState
     public override void ExitState()
     {
         base.ExitState();
-
-        UIManager.Instance.HideLoseScreen();
     }
 
     public override void UpdateState()

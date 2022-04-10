@@ -14,8 +14,6 @@ public class MenuState : BaseState
     public override void ExitState()
     {
         base.ExitState();
-
-        UIManager.Instance.HideMainMenu();
     }
 
     public override void UpdateState()
