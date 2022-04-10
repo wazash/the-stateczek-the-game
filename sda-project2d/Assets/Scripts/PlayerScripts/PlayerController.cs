@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Rect cameraBounds;
 
     private Vector3 spawnPosition;
-    private bool isPlayerDead;
+    private bool isPlayerDead = true;
 
     public void Respawn()
     {
@@ -101,6 +101,11 @@ public class PlayerController : MonoBehaviour
     private void HealthSystem_OnHealthDepleted()
     {
         OnPlayerDied?.Invoke();
+        DisablePlayer();
+    }
+
+    private void DisablePlayer()
+    {
         playerSprite.SetActive(false);
         isPlayerDead = true;
         SwitchPlayerCollider(false);

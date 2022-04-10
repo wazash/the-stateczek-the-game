@@ -54,7 +54,7 @@ public class GameState : BaseState
         var bullets = GameObject.FindObjectsOfType<Bullet>();
         foreach (Bullet bullet in bullets)
         {
-            bullet.DestroyBulletImmediate();
+            bullet.DestroyBullet();
         }
     }
 

@@ -8,7 +8,7 @@ public class PlayerBulletShooter : MonoBehaviour
     [SerializeField] private Transform[] bulletPositions;
     [SerializeField] private Bullet bulletPrefab;
 
-    bool areWeaponsDisabled;
+    bool areWeaponsDisabled = true;
 
     private void Awake()
     {

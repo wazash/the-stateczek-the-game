@@ -16,9 +16,9 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifeLength);
     }
 
-    public void DestroyBulletImmediate()
+    public void DestroyBullet()
     {
-        DestroyImmediate(gameObject);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +30,6 @@ public class Bullet : MonoBehaviour
             healthSystem.TakeHit(1);
         }
 
-        DestroyBulletImmediate();
+        DestroyBullet();
     }
 }
