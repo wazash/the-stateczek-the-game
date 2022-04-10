@@ -16,6 +16,13 @@ public class Enemy : MonoBehaviour
 
     private float timer = -1f;
 
+    float despawnPosition, despawnPositionOffset = 1;
+
+    public void Initialize(float leftScreenEdgePosition)
+    {
+        despawnPosition = leftScreenEdgePosition;
+    }
+
     private void Awake()
     {
         healthSystem.OnHealthDepleted += HealthSystem_OnHealthDepleted;
@@ -51,9 +58,25 @@ public class Enemy : MonoBehaviour
         rigidbody.velocity = Vector3.left * speed;
     }
 
-    private void HealthSystem_OnHealthDepleted()
+    private void LateUpdate()
+    {
+        // Despawn enemy after gone offscreen
+        if(transform.position.x < despawnPosition - despawnPositionOffset)
+        {
+            DestroyEnemy();
+        }
+    }
+
+    // Enemy destroyed
+    private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    // Enemy killed
+    private void HealthSystem_OnHealthDepleted()
+    {
+        DestroyEnemy();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
