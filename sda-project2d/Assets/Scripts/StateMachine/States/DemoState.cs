@@ -6,20 +6,20 @@ public class DemoState : BaseState
     {
         base.EnterState(stateMachine);
 
-        Debug.Log("Demo State Enter");
+        //Debug.Log("Demo State Enter");
     }
 
     public override void UpdateState()
     {
         base.UpdateState();
 
-        Debug.Log("Demo State Update");
+        //Debug.Log("Demo State Update");
     }
 
     public override void ExitState()
     {
         base.ExitState();
 
-        Debug.Log("Demo State Exit");
+        //Debug.Log("Demo State Exit");
     }
 }

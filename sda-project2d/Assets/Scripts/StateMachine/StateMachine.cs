@@ -6,8 +6,7 @@ public class StateMachine : MonoBehaviour
 
     private void Start()
     {
-        // Go to menu state
-        EnterState(new DemoState());
+        EnterState(new GameState());
     }
 
     private void Update()

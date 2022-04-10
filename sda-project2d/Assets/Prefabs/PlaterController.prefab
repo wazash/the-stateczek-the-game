@@ -182,6 +182,9 @@ MonoBehaviour:
   inputManager: {fileID: 5122038409521647522}
   rigidbody: {fileID: 5122038409521647523}
   healthSystem: {fileID: 5897809319322213317}
+  playerSprite: {fileID: 5122038410504771617}
+  colliders:
+  - {fileID: 5122038409521647524}
   speed: 50
 --- !u!114 &5122038409521647522
 MonoBehaviour:

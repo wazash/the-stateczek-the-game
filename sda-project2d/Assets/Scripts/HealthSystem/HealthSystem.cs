@@ -13,7 +13,13 @@ public class HealthSystem : MonoBehaviour
 
     private void Awake()
     {
+        ResetHP();
+    }
+
+    public void ResetHP()
+    {
         currentHP = hpAmountTotal;
+        OnHealthChanged?.Invoke(currentHP);
     }
 
     public void TakeHit(int damage)

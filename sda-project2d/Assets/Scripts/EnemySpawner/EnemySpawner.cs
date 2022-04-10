@@ -1,15 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyPrefab;
+    public static EnemySpawner Instance;
 
-    float leftXPosition, xPosition, yMin, yMax;
+    [SerializeField] private Enemy enemyPrefab;
+    private float leftXPosition, xPosition, yMin, yMax;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         var activeCamera = Camera.main;
 
         Vector3 bottomLeftPosition = activeCamera.ScreenToWorldPoint(Vector3.zero);
@@ -20,16 +29,6 @@ public class EnemySpawner : MonoBehaviour
 
         leftXPosition = bottomLeftPosition.x;
         xPosition = topRightPosition.x - bottomLeftPosition.x;
-
-        TestSpawn();
-    }
-
-    private void TestSpawn()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy();
-        }
     }
 
     public void SpawnEnemy()

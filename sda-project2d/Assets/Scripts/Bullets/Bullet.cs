@@ -16,6 +16,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifeLength);
     }
 
+    public void DestroyBulletImmediate()
+    {
+        DestroyImmediate(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
@@ -25,6 +30,6 @@ public class Bullet : MonoBehaviour
             healthSystem.TakeHit(1);
         }
 
-        Destroy(gameObject);
+        DestroyBulletImmediate();
     }
 }
