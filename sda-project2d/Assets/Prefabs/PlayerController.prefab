@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6177731254593400581}
   - component: {fileID: 5897809319322213317}
   m_Layer: 6
-  m_Name: PlaterController
+  m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
