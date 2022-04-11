@@ -685,10 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeCounter: {fileID: 2128284691}
-<<<<<<< HEAD
-=======
   scoreCounter: {fileID: 822700004}
->>>>>>> feature/score-manager
 --- !u!222 &954689743
 CanvasRenderer:
   m_ObjectHideFlags: 0
