@@ -20,8 +20,6 @@ public class HUDView : BaseView
 
     }
 
-
-
     public override void HideView()
     {
         base.HideView();
@@ -36,13 +34,12 @@ public class HUDView : BaseView
         UpdateText(obj);
     }
 
-    private void UpdateText(int hpCount)
-    {
-        lifeCounter.text = $"Lives: {hpCount}";
-    }
-
     private void GameEvents_OnScoreUpdated(int obj)
     {
         scoreCounter.text = obj.ToString();
+    }
+    private void UpdateText(int hpCount)
+    {
+        lifeCounter.text = $"Lives: {hpCount}";
     }
 }

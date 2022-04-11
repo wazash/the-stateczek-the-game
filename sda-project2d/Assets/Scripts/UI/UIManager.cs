@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private BaseView loseView, hudView, menuView;
+    [Tooltip("0 - menuView, 1 - hudView, 2 - loseView")]
+    [SerializeField] private BaseView[] views;
 
     public static UIManager Instance;
 
@@ -22,22 +23,31 @@ public class UIManager : MonoBehaviour
 
     public void ShowMainMenu()
     {
-        menuView.ShowView();
-        loseView.HideView();
-        hudView.HideView();
+        foreach (var view in views)
+        {
+            view.HideView();
+        }
+        
+        views[0].ShowView();
     }
 
     public void ShowHUD()
     {
-        hudView.ShowView();
-        menuView.HideView();
-        loseView.HideView();
+        foreach (var view in views)
+        {
+            view.HideView();
+        }
+
+        views[1].ShowView();
     }
 
     public  void ShowLoseScreen()
     {
-        loseView.ShowView();
-        menuView.HideView();
-        hudView.HideView();
+        foreach (var view in views)
+        {
+            view.HideView();
+        }
+
+        views[2].ShowView();
     }
 }
