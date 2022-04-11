@@ -77,6 +77,8 @@ public class Enemy : MonoBehaviour
     private void HealthSystem_OnHealthDepleted()
     {
         DestroyEnemy();
+
+        GameEvents.EnemyDied(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
