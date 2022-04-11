@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 public class GameEvents
 {
-    public static event System.Action<Enemy> OnEnemyDied;
+    public static event Action<Enemy> OnEnemyDied;
     public static void EnemyDied(Enemy enemy)
     {
-        if(enemy == null)
+        if (enemy == null)
         {
             return;
         }
@@ -15,7 +13,18 @@ public class GameEvents
         OnEnemyDied?.Invoke(enemy);
     }
 
-    public static event System.Action<int> OnScoreUpdated;
+    public static event Action<PlayerController> OnPlayerDied;
+    public static void PlayerDied(PlayerController player)
+    {
+        if(player == null)
+        {
+            return;
+        }
+
+        OnPlayerDied?.Invoke(player);
+    }
+
+    public static event Action<int> OnScoreUpdated;
     public static void ScoreUpdated(int score)
     {
         OnScoreUpdated?.Invoke(score);
