@@ -242,6 +242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipExplosion
       objectReference: {fileID: 0}
+    - target: {fileID: 4379095819142268418, guid: c3dc5adcfa2d3d34189e99e9459dd666, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3dc5adcfa2d3d34189e99e9459dd666, type: 3}
 --- !u!4 &5920847989319461810 stripped

@@ -1,21 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(HealthSystem))]
 public class Enemy : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private new Rigidbody2D rigidbody;
-
     [SerializeField] private HealthSystem healthSystem;
     [SerializeField] private Bullet bulletPrefab;
 
+    [Header("Behaviour")]
     [SerializeField] private float speed;
+
+    [Header("Shooting")]
     [SerializeField] private float minInterval, maxInterval;
+
+    [Header("Other")]
     [SerializeField] private int pointsValue;
 
     private float timer = -1f;
 
-    float despawnPosition, despawnPositionOffset = 1;
+    private float despawnPosition, despawnPositionOffset = 1;
 
     public int PointsValue { get { return pointsValue; } }
 

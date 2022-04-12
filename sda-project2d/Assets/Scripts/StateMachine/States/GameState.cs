@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class GameState : BaseState
 {
-    private float spawnInterval = 1.5f;
     private float currentTime;
 
     public override void EnterState(StateMachine stateMachine)
     {
         base.EnterState(stateMachine);
 
-        currentTime = spawnInterval;
+        currentTime = EnemySpawner.Instance.SpawnInterval;
 
         PlayerController.Instance.OnPlayerDied += PlayerInstance_OnPlayerDied;
         PlayerController.Instance.Respawn();
@@ -30,8 +29,7 @@ public class GameState : BaseState
         if (currentTime < 0)
         {
             EnemySpawner.Instance.SpawnEnemy();
-            currentTime = spawnInterval;
-
+            currentTime = EnemySpawner.Instance.SpawnInterval;
         }
     }
     public override void ExitState()
