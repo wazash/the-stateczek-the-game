@@ -29,4 +29,10 @@ public class GameEvents
     {
         OnScoreUpdated?.Invoke(score);
     }
+
+    public static event Action OnHighscoreUpdated;
+    public static void HighscoreUpdated()
+    {
+        OnHighscoreUpdated?.Invoke();
+    }
 }
