@@ -167,13 +167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203d05d34b39f04db6314c9e3e42c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidbody: {fileID: 4260369838799119632}
   healthSystem: {fileID: 4260369838799119629}
   bulletPrefab: {fileID: 5265313659561773873, guid: ad1aa0b84518b724fbc473a0821709d0, type: 3}
-  rigidbody: {fileID: 4260369838799119632}
   speed: 5
   minInterval: 1
   maxInterval: 2
-  explosionEffect: {fileID: 3781262565613191519, guid: c3dc5adcfa2d3d34189e99e9459dd666, type: 3}
+  pointsValue: 150
 --- !u!114 &4260369838799119629
 MonoBehaviour:
   m_ObjectHideFlags: 0

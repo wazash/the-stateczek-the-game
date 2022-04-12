@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private HealthSystem healthSystem;
-
-    [SerializeField] private Bullet bulletPrefab;
-
     [SerializeField] private new Rigidbody2D rigidbody;
 
-    [SerializeField] private float speed;
+    [SerializeField] private HealthSystem healthSystem;
+    [SerializeField] private Bullet bulletPrefab;
 
+    [SerializeField] private float speed;
     [SerializeField] private float minInterval, maxInterval;
+    [SerializeField] private int pointsValue;
 
     private float timer = -1f;
 
     float despawnPosition, despawnPositionOffset = 1;
+
+    public int PointsValue { get { return pointsValue; } }
 
     public void Initialize(float leftScreenEdgePosition)
     {
@@ -76,9 +77,9 @@ public class Enemy : MonoBehaviour
     // Enemy killed
     private void HealthSystem_OnHealthDepleted()
     {
-        DestroyEnemy();
-
         GameEvents.EnemyDied(this);
+
+        DestroyEnemy();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
