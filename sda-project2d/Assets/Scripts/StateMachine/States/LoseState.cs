@@ -24,5 +24,12 @@ public class LoseState : BaseState
         {
             myStateMachine.EnterState(new GameState());
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ScoreManager.Instance.ResetHighscore();
+            ScoreManager.Instance.ResetScore();
+            GameEvents.HighscoreUpdated();
+        }
     }
 }

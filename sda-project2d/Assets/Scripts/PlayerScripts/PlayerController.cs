@@ -102,9 +102,9 @@ public class PlayerController : MonoBehaviour
 
     private void HealthSystem_OnHealthDepleted()
     {
-        OnPlayerDied?.Invoke();
-
         GameEvents.PlayerDied(this);
+
+        OnPlayerDied?.Invoke();
 
         DisablePlayer();
     }

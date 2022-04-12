@@ -14,10 +14,12 @@ public class HUDView : BaseView
         base.ShowView();
 
         PlayerController.Instance.HealthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;
-        UpdateText(PlayerController.Instance.HealthSystem.CurrentHP);
+        UpdateHealthText(PlayerController.Instance.HealthSystem.CurrentHP);
 
         GameEvents.OnScoreUpdated += GameEvents_OnScoreUpdated;
 
+        ScoreManager.Instance.ResetScore();
+        GameEvents.ScoreUpdated(ScoreManager.Instance.Score);
     }
 
     public override void HideView()
@@ -31,15 +33,20 @@ public class HUDView : BaseView
 
     private void HealthSystem_OnHealthChanged(int obj)
     {
-        UpdateText(obj);
+        UpdateHealthText(obj);
     }
 
-    private void GameEvents_OnScoreUpdated(int obj)
-    {
-        scoreCounter.text = obj.ToString();
-    }
-    private void UpdateText(int hpCount)
+    private void UpdateHealthText(int hpCount)
     {
         lifeCounter.text = $"Lives: {hpCount}";
+    }
+    private void GameEvents_OnScoreUpdated(int score)
+    {
+        UpdateScoreText(score);
+    }
+
+    private void UpdateScoreText(int score)
+    {
+        scoreCounter.text = $"Score: {score}";
     }
 }

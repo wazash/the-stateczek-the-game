@@ -11,6 +11,11 @@ public class ShipExplosion : MonoBehaviour
         GameEvents.OnEnemyDied += GameEvents_OnEnemyDied;
         GameEvents.OnPlayerDied += GameEvents_OnPlayerDied;
     }
+    private void OnDestroy()
+    {
+        GameEvents.OnEnemyDied -= GameEvents_OnEnemyDied;
+        GameEvents.OnPlayerDied -= GameEvents_OnPlayerDied;
+    }
 
     private void GameEvents_OnPlayerDied(PlayerController obj)
     {
@@ -22,17 +27,12 @@ public class ShipExplosion : MonoBehaviour
         PlayExplosion(obj.transform);
     }
 
-    private void OnDestroy()
-    {
-        GameEvents.OnEnemyDied -= GameEvents_OnEnemyDied;
-        GameEvents.OnPlayerDied -= GameEvents_OnPlayerDied;
-    }
 
     private void PlayExplosion(Transform position)
     {
         var explosion = Instantiate(explosionPS, position.position,Quaternion.identity);
         explosion.Play();
 
-        Destroy(explosion.gameObject, 1);
+        Destroy(explosion.gameObject, explosion.main.duration);
     }
 }
