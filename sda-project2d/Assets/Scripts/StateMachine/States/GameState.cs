@@ -16,6 +16,8 @@ public class GameState : BaseState
 
         CleanUpScene();
 
+        EnemySpawner.Instance.ResetTimer();
+
         UIManager.Instance.ShowHUD();
     }
 
