@@ -21,4 +21,13 @@ public class MenuView : BaseView
         gameStateMachine.EnterState(new GameState());
         HideView();
     }
+    public void OnOptionsButtonPressed()
+    {
+        Debug.LogWarning("Nothing implemented here");
+    }
+    public void OnExitGameButtonPressed()
+    {
+        Debug.LogWarning("The game should shut down, but doesn't work in editor.");
+        Application.Quit();
+    }
 }
