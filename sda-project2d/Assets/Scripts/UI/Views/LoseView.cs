@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LoseView : BaseView
 {
+    [SerializeField] private StateMachine stateMachine;
+
     [SerializeField] private TMP_Text yourScoreText;
     [SerializeField] private TMP_Text highscoreText;
+
+    [SerializeField] private GameObject defaultSelectetGameObject;
 
     public override void ShowView()
     {
@@ -17,9 +22,9 @@ public class LoseView : BaseView
 
         PrintYourScore(ScoreManager.Instance.Score);
         PrintHighscore(ScoreManager.Instance.HighScore);
+
+        EventSystem.current.SetSelectedGameObject(defaultSelectetGameObject);
     }
-
-
 
     public override void HideView()
     {
@@ -45,5 +50,10 @@ public class LoseView : BaseView
     private void PrintHighscore(int highscore)
     {
         highscoreText.text = $"Highscore:\n{highscore}";
+    }
+
+    public void OnMainMenuButtonPressed()
+    {
+        stateMachine.EnterState(new MenuState());
     }
 }

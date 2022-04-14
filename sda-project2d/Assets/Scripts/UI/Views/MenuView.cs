@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuView : BaseView
 {
     [SerializeField] private StateMachine gameStateMachine;
+
+    [SerializeField] private GameObject defaultSelectetGameObject;
 
     public override void HideView()
     {
@@ -14,6 +17,8 @@ public class MenuView : BaseView
     public override void ShowView()
     {
         base.ShowView();
+
+        EventSystem.current.SetSelectedGameObject(defaultSelectetGameObject);
     }
 
     public void OnStartGameButtonPressed()
@@ -30,4 +35,5 @@ public class MenuView : BaseView
         Debug.LogWarning("The game should shut down, but doesn't work in editor.");
         Application.Quit();
     }
+    
 }

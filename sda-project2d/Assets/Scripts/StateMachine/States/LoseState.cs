@@ -19,17 +19,5 @@ public class LoseState : BaseState
     public override void UpdateState()
     {
         base.UpdateState(); 
-        
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            myStateMachine.EnterState(new GameState());
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ScoreManager.Instance.ResetHighscore();
-            ScoreManager.Instance.ResetScore();
-            GameEvents.HighscoreUpdated();
-        }
     }
 }
