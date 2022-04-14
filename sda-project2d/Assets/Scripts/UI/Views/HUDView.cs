@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class HUDView : BaseView
 {
     [SerializeField] private TMP_Text lifeCounter;
     [SerializeField] private TMP_Text scoreCounter;
+
+    [SerializeField] private Image[] lives;
 
 
     public override void ShowView()
@@ -38,7 +41,18 @@ public class HUDView : BaseView
 
     private void UpdateHealthText(int hpCount)
     {
-        lifeCounter.text = $"Lives: {hpCount}";
+        //lifeCounter.text = $"Lives: {hpCount}";
+        for (int i = 0; i < lives.Length; i++)
+        {
+            if(i < hpCount)
+            {
+                lives[i].enabled = true;
+            }
+            else
+            {
+                lives[i].enabled = false;
+            }
+        }
     }
     private void GameEvents_OnScoreUpdated(int score)
     {
