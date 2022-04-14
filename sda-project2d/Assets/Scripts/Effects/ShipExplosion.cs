@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipExplosion : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem explosionPS;
+    [SerializeField] private Animator explosion;
 
     private void Awake()
     {
@@ -30,9 +30,9 @@ public class ShipExplosion : MonoBehaviour
 
     private void PlayExplosion(Transform position)
     {
-        var explosion = Instantiate(explosionPS, position.position,Quaternion.identity);
-        explosion.Play();
 
-        Destroy(explosion.gameObject, explosion.main.duration);
+        var explosion = Instantiate(this.explosion, position.position, Quaternion.identity);
+
+        Destroy(explosion.gameObject, explosion.GetCurrentAnimatorStateInfo(0).length);
     }
 }
