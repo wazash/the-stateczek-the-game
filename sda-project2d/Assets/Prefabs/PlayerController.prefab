@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7547a0b7c60fbc44cbc42533c6a46270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 5122038409521647521}
   inputManager: {fileID: 5122038409521647522}
   bulletPositions:
   - {fileID: 9074229883591546787}
