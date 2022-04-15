@@ -10,6 +10,8 @@ public class PlayerBulletShooter : MonoBehaviour
 
     bool areWeaponsDisabled = true;
 
+    ObjectPooler objectPooler;
+
     private void Awake()
     {
         playerController.OnPlayerDied += PlayerController_OnPlayerDied;
@@ -20,6 +22,11 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         playerController.OnPlayerDied -= PlayerController_OnPlayerDied;
         playerController.OnPlayerRespawned -= PlayerController_OnPlayerRespawned;
+    }
+
+    private void Start()
+    {
+        objectPooler = ObjectPooler.Instance;
     }
 
     private void Update()
@@ -49,9 +56,10 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         foreach (var transformPosition in bulletPositions)
         {
-            Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transformPosition.position, Quaternion.identity);
-
-            createdBullet.Shoot(Vector3.right);
+            //Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transformPosition.position, Quaternion.identity);
+            GameObject createdBullet = objectPooler.SpawnFromPool("PlayerBullet", transformPosition.position, Quaternion.identity);
+            
+            createdBullet.GetComponent<Bullet>().Shoot(Vector3.right);
         }
     }
 }

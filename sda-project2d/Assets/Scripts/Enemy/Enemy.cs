@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private HealthSystem healthSystem;
     [SerializeField] private Bullet bulletPrefab;
 
+    ObjectPooler objectPooler;
+
     [Header("Behaviour")]
     [SerializeField] private float speed;
 
@@ -41,6 +43,11 @@ public class Enemy : MonoBehaviour
         healthSystem.OnHealthDepleted -= HealthSystem_OnHealthDepleted;
     }
 
+    private void Start()
+    {
+        objectPooler = ObjectPooler.Instance;
+    }
+
     private void Update()
     {
         if(timer <= 0)
@@ -54,9 +61,10 @@ public class Enemy : MonoBehaviour
 
     private void Shoot()
     {
-        Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transform.position, Quaternion.identity);
+        //Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transform.position, Quaternion.identity);
+        GameObject createdBullet = objectPooler.SpawnFromPool(bulletPrefab.name, transform.position, Quaternion.identity);
 
-        createdBullet.Shoot(Vector3.left);
+        createdBullet.GetComponent<Bullet>().Shoot(Vector3.left);
     }
 
     private void FixedUpdate()
@@ -76,7 +84,8 @@ public class Enemy : MonoBehaviour
     // Enemy destroyed
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     // Enemy killed

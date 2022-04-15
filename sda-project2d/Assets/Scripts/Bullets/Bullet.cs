@@ -13,12 +13,14 @@ public class Bullet : MonoBehaviour
     {
         rigidbody.AddForce(direction * speed, ForceMode2D.Impulse);
 
-        Destroy(gameObject, lifeLength);
+        //Destroy(gameObject, lifeLength);
+        Invoke(nameof(DestroyBullet), lifeLength);
     }
 
     public void DestroyBullet()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

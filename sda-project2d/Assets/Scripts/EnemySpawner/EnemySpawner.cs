@@ -4,6 +4,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
 
+    ObjectPooler objectPooler;
+
     [Header("Enemies prefabs")]
     [SerializeField] private Enemy[] enemyPrefabs;
 
@@ -46,7 +48,11 @@ public class EnemySpawner : MonoBehaviour
 
         CalculateScreenSize();
     }
-       
+
+    private void Start()
+    {
+        objectPooler = ObjectPooler.Instance;
+    }
 
     private void Update()
     {
@@ -65,21 +71,24 @@ public class EnemySpawner : MonoBehaviour
     {
         if (timer < hardEnemiesSpawnStartTime)
         {
-            var enemy = Instantiate<Enemy>(enemyPrefabs[0], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
+            //var enemy = Instantiate<Enemy>(enemyPrefabs[0], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
+            var enemy = objectPooler.SpawnFromPool(enemyPrefabs[0].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
 
-            enemy.Initialize(leftXPosition);
+            enemy.GetComponent<Enemy>().Initialize(leftXPosition);
         }
         else if(timer > hardEnemiesSpawnStartTime && timer < sinusEnemiesSpawnStartTime)
         {
-            var enemy = Instantiate<Enemy>(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
+            //var enemy = Instantiate<Enemy>(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
+            var enemy = objectPooler.SpawnFromPool(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
 
-            enemy.Initialize(leftXPosition);
+            enemy.GetComponent<Enemy>().Initialize(leftXPosition);
         }
         else
         {
-            var enemy = Instantiate<Enemy>(enemyPrefabs[Random.Range(1, enemyPrefabs.Length)], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
+            //var enemy = Instantiate<Enemy>(enemyPrefabs[Random.Range(1, enemyPrefabs.Length)], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
+            var enemy = objectPooler.SpawnFromPool(enemyPrefabs[Random.Range(1, enemyPrefabs.Length)].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
 
-            enemy.Initialize(leftXPosition);
+            enemy.GetComponent<Enemy>().Initialize(leftXPosition);
         }
     }
 
