@@ -4,9 +4,13 @@ public class GameState : BaseState
 {
     private float currentTime;
 
+    bool gamePaused = false;
+
     public override void EnterState(StateMachine stateMachine)
     {
         base.EnterState(stateMachine);
+
+        Time.timeScale = 1;
 
         currentTime = EnemySpawner.Instance.SpawnInterval;
 
@@ -29,6 +33,8 @@ public class GameState : BaseState
     {
         base.UpdateState();
 
+        CheckPauseButton();
+
         currentTime -= Time.deltaTime;
 
         if (currentTime < 0)
@@ -37,11 +43,30 @@ public class GameState : BaseState
             currentTime = EnemySpawner.Instance.SpawnInterval;
         }
     }
+
     public override void ExitState()
     {
         PlayerController.Instance.OnPlayerDied -= PlayerInstance_OnPlayerDied;
 
         base.ExitState();
+
+        Time.timeScale = 1;
+    }
+    private void CheckPauseButton()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gamePaused)
+            {
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
+
+            gamePaused = !gamePaused;
+        }
     }
 
     private void PlayerInstance_OnPlayerDied()
