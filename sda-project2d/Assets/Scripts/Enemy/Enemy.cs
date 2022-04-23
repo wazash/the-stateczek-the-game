@@ -24,7 +24,10 @@ public class Enemy : MonoBehaviour
 
     private float despawnPosition, despawnPositionOffset = 1;
 
+    public HealthSystem HealthSystem { get { return healthSystem; } }
     public int PointsValue { get { return pointsValue; } }
+
+    public static event System.Action<Enemy> OnEnemyShot;
 
     public void Initialize(float leftScreenEdgePosition)
     {
@@ -65,6 +68,8 @@ public class Enemy : MonoBehaviour
         GameObject createdBullet = objectPooler.SpawnFromPool(bulletPrefab.name, transform.position, Quaternion.identity);
 
         createdBullet.GetComponent<Bullet>().Shoot(Vector3.left);
+
+        OnEnemyShot?.Invoke(this);
     }
 
     private void FixedUpdate()

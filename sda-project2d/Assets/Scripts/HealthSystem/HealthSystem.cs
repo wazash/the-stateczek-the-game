@@ -27,6 +27,7 @@ public class HealthSystem : MonoBehaviour
         currentHP -= damage;
 
         OnHealthChanged?.Invoke(currentHP);
+        GameEvents.ShipHit(currentHP);
 
         if (currentHP <= 0)
         {

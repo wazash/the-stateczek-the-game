@@ -9,6 +9,7 @@ public class MenuState : BaseState
         base.EnterState(stateMachine);
 
         UIManager.Instance.ShowMainMenu();
+        MusicManager.Instance.PlayMusic(MusicManager.Instance.Music.menuMusic);
     }
 
     public override void ExitState()

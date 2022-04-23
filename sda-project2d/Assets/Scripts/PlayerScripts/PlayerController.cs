@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private InputManager inputManager;
     [SerializeField] private new Rigidbody2D rigidbody;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     [SerializeField] private HealthSystem healthSystem;
 
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
         SwitchPlayerCollider(true);
 
         OnPlayerRespawned?.Invoke();
+
+        trailRenderer.Clear();
     }
 
     private void Awake()

@@ -35,4 +35,10 @@ public class GameEvents
     {
         OnHighscoreUpdated?.Invoke();
     }
+
+    public static event Action<int> OnEnemyHit;
+    public static void ShipHit(int currentHP)
+    {
+        OnEnemyHit?.Invoke(currentHP);
+    }
 }

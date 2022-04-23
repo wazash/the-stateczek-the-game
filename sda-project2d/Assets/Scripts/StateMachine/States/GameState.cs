@@ -18,6 +18,11 @@ public class GameState : BaseState
         EnemySpawner.Instance.ResetTimer();
 
         UIManager.Instance.ShowHUD();
+
+        if(MusicManager.Instance.MusicSource.clip != MusicManager.Instance.Music.gameplayMusic)
+        {
+            MusicManager.Instance.PlayMusic(MusicManager.Instance.Music.gameplayMusic);
+        }
     }
 
     public override void UpdateState()

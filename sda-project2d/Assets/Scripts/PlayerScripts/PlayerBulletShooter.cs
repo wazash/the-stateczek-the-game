@@ -12,6 +12,8 @@ public class PlayerBulletShooter : MonoBehaviour
 
     ObjectPooler objectPooler;
 
+    public static event System.Action OnPlayerShot;
+
     private void Awake()
     {
         playerController.OnPlayerDied += PlayerController_OnPlayerDied;
@@ -60,6 +62,7 @@ public class PlayerBulletShooter : MonoBehaviour
             GameObject createdBullet = objectPooler.SpawnFromPool("PlayerBullet", transformPosition.position, Quaternion.identity);
             
             createdBullet.GetComponent<Bullet>().Shoot(Vector3.right);
+            OnPlayerShot?.Invoke();
         }
     }
 }
