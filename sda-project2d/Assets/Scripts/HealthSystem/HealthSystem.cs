@@ -39,4 +39,15 @@ public class HealthSystem : MonoBehaviour
     {
         OnHealthDepleted?.Invoke();
     }
+
+    public void Heal(int hp)
+    {
+        currentHP += hp;
+        if(currentHP > hpAmountTotal)
+        {
+            currentHP = hpAmountTotal;
+        }
+
+        OnHealthChanged?.Invoke(currentHP);
+    }
 }
