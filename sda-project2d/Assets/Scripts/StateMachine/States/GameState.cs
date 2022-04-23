@@ -6,13 +6,15 @@ public class GameState : BaseState
 
     bool gamePaused = false;
 
+    private EnemyWaveManager enemyWaveManager;
+
     public override void EnterState(StateMachine stateMachine)
     {
         base.EnterState(stateMachine);
 
-        Time.timeScale = 1;
+        enemyWaveManager = new EnemyWaveManager();
 
-        currentTime = EnemySpawner.Instance.SpawnInterval;
+        Time.timeScale = 1;
 
         PlayerController.Instance.OnPlayerDied += PlayerInstance_OnPlayerDied;
         PlayerController.Instance.Respawn();
@@ -35,13 +37,7 @@ public class GameState : BaseState
 
         CheckPauseButton();
 
-        currentTime -= Time.deltaTime;
-
-        if (currentTime < 0)
-        {
-            EnemySpawner.Instance.SpawnEnemy();
-            currentTime = EnemySpawner.Instance.SpawnInterval;
-        }
+        enemyWaveManager.UpdateWave();
     }
 
     public override void ExitState()
@@ -81,6 +77,8 @@ public class GameState : BaseState
         CleanUpEnemies();
 
         CleanUpBullets();
+
+        CleanUpPowerups();
     }
 
     private static void CleanUpBullets()
@@ -98,6 +96,15 @@ public class GameState : BaseState
         foreach (Enemy enemy in enemies)
         {
             enemy.DestroyEnemy();
+        }
+    }
+
+    private static void CleanUpPowerups()
+    {
+        var powerups = GameObject.FindObjectsOfType<BasePowerup>();
+        foreach (BasePowerup powerup in powerups)
+        {
+            powerup.DespawnPowerup();
         }
     }
 }

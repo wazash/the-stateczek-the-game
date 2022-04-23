@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     public int PointsValue { get { return pointsValue; } }
 
     public static event System.Action<Enemy> OnEnemyShot;
+    public event System.Action<Enemy> OnEnemyDespawned;
 
     public void Initialize(float leftScreenEdgePosition)
     {
@@ -89,8 +90,9 @@ public class Enemy : MonoBehaviour
     // Enemy destroyed
     public void DestroyEnemy()
     {
-        //Destroy(gameObject);
         gameObject.SetActive(false);
+
+        OnEnemyDespawned?.Invoke(this);
     }
 
     // Enemy killed

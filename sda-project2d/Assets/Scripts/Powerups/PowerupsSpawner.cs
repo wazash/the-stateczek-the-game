@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerupsSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject healthPowerupPrefab;
+    //[SerializeField] private GameObject healthPowerupPrefab;
 
     private const string HEALTH_POWERUP = "Health_Powerup";
 
@@ -16,7 +16,6 @@ public class PowerupsSpawner : MonoBehaviour
     private void GameEvents_OnEnemyDied(Enemy obj)
     {
         var randomFloat = Random.Range(1f, 100f);
-        Debug.Log("value: " + randomFloat);
 
         if(randomFloat <= 33f)
         {

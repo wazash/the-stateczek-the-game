@@ -67,28 +67,31 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy()
+    public Enemy SpawnEnemy()
     {
         if (timer < hardEnemiesSpawnStartTime)
         {
-            //var enemy = Instantiate<Enemy>(enemyPrefabs[0], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
             var enemy = objectPooler.SpawnFromPool(enemyPrefabs[0].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
 
             enemy.GetComponent<Enemy>().Initialize(leftXPosition);
+
+            return enemy.GetComponent<Enemy>();
         }
         else if(timer > hardEnemiesSpawnStartTime && timer < sinusEnemiesSpawnStartTime)
         {
-            //var enemy = Instantiate<Enemy>(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
             var enemy = objectPooler.SpawnFromPool(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
 
             enemy.GetComponent<Enemy>().Initialize(leftXPosition);
+
+            return enemy.GetComponent<Enemy>();
         }
         else
         {
-            //var enemy = Instantiate<Enemy>(enemyPrefabs[Random.Range(1, enemyPrefabs.Length)], new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
             var enemy = objectPooler.SpawnFromPool(enemyPrefabs[Random.Range(1, enemyPrefabs.Length)].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
 
             enemy.GetComponent<Enemy>().Initialize(leftXPosition);
+
+            return enemy.GetComponent<Enemy>();
         }
     }
 
