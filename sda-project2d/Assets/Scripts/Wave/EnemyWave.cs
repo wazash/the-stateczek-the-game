@@ -7,14 +7,17 @@ public class EnemyWave
 {
     public event System.Action OnWaveFinished;
 
+    private int waveIdentifier;
+
     private float spawnInterval;
     private float currentTime;
 
     private int spawnedShips = 0, maxShips = 3;
     private int despawnedShips = 0;
 
-    public EnemyWave()
+    public EnemyWave(int waveNumber)
     {
+        waveIdentifier = waveNumber;
         spawnInterval = EnemySpawner.Instance.SpawnInterval;
         currentTime = spawnInterval;
     }
@@ -29,7 +32,7 @@ public class EnemyWave
 
         if (currentTime < 0)
         {
-            var enemy = EnemySpawner.Instance.SpawnEnemy();
+            var enemy = EnemySpawner.Instance.SpawnEnemy(waveIdentifier);
             currentTime = spawnInterval;
 
             enemy.OnEnemyDespawned += Enemy_OnEnemyDespawned;
