@@ -18,12 +18,14 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         playerController.OnPlayerDied += PlayerController_OnPlayerDied;
         playerController.OnPlayerRespawned += PlayerController_OnPlayerRespawned;
+        GameEvents.OnGamePaused += GameEvents_OnGamePaused;
     }
 
     private void OnDestroy()
     {
         playerController.OnPlayerDied -= PlayerController_OnPlayerDied;
         playerController.OnPlayerRespawned -= PlayerController_OnPlayerRespawned;
+        GameEvents.OnGamePaused -= GameEvents_OnGamePaused;
     }
 
     private void Start()
@@ -42,6 +44,11 @@ public class PlayerBulletShooter : MonoBehaviour
         {
             Shoot();
         }
+    }
+
+    private void GameEvents_OnGamePaused(bool pauseState)
+    {
+        areWeaponsDisabled = pauseState;
     }
 
     private void PlayerController_OnPlayerRespawned()

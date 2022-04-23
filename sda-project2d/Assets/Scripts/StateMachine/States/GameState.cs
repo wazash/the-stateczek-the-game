@@ -66,6 +66,8 @@ public class GameState : BaseState
             }
 
             gamePaused = !gamePaused;
+
+            GameEvents.GamePaused(this, gamePaused);
         }
     }
 

@@ -11,6 +11,7 @@ public class HUDView : BaseView
 
     [SerializeField] private Image[] lives;
 
+    [SerializeField] GameObject pauseText;
 
     public override void ShowView()
     {
@@ -20,9 +21,12 @@ public class HUDView : BaseView
         UpdateHealthText(PlayerController.Instance.HealthSystem.CurrentHP);
 
         GameEvents.OnScoreUpdated += GameEvents_OnScoreUpdated;
+        GameEvents.OnGamePaused += GameEvents_OnGamePaused;
 
         ScoreManager.Instance.ResetScore();
         GameEvents.ScoreUpdated(ScoreManager.Instance.Score);
+
+        pauseText.SetActive(false);
     }
 
     public override void HideView()
@@ -32,6 +36,7 @@ public class HUDView : BaseView
         PlayerController.Instance.HealthSystem.OnHealthChanged -= HealthSystem_OnHealthChanged;
 
         GameEvents.OnScoreUpdated -= GameEvents_OnScoreUpdated;
+        GameEvents.OnGamePaused -= GameEvents_OnGamePaused;
     }
 
     private void HealthSystem_OnHealthChanged(int obj)
@@ -62,5 +67,10 @@ public class HUDView : BaseView
     private void UpdateScoreText(int score)
     {
         scoreCounter.text = $"Score: {score}";
+    }
+
+    private void GameEvents_OnGamePaused(bool pauseState)
+    {
+        pauseText.SetActive(pauseState);
     }
 }

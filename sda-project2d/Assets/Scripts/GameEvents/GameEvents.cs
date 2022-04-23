@@ -41,4 +41,15 @@ public class GameEvents
     {
         OnEnemyHit?.Invoke(currentHP);
     }
+
+    public static event Action<bool> OnGamePaused;
+    public static void GamePaused(GameState gameState, bool pauseState)
+    {
+        if(gameState == null)
+        {
+            return;
+        }
+
+        OnGamePaused?.Invoke(pauseState);
+    }
 }
