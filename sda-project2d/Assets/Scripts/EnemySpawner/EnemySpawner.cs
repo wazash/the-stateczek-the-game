@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemies prefabs")]
     [SerializeField] private Enemy[] enemyPrefabs;
+    [SerializeField] private Boss bossPrefab;
 
     [Header("Spawn Interval")]
     [SerializeField] private float spawnInterval = 1.5f;
@@ -25,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float sinusEnemiesSpawnStartTime = 30.0f;
 
     [Header("Screen size")]
-    private float leftXPosition, xPosition, yMin, yMax;
+    private float leftXPosition, xPosition, bossPosition, yMin, yMax;
 
     [Header("Timer")]
     private float timer;
@@ -103,6 +104,15 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
+    public Boss SpawnBoss()
+    {
+        //var bossSpawned = Instantiate(bossPrefab, new Vector3(xPosition, 0, 0), Quaternion.identity);
+
+        var bossSpawned = ObjectPooler.Instance.SpawnFromPool("Boss", new Vector3(bossPosition, 0, 0), Quaternion.identity);
+
+        return bossSpawned.GetComponent<Boss>();
+    }
+
     private int GetRandomID(int waveNumber)
     {
         int waveNumberClamp = Mathf.Clamp(waveNumber, 0, enemyPrefabs.Length);
@@ -129,5 +139,6 @@ public class EnemySpawner : MonoBehaviour
 
         leftXPosition = bottomLeftPosition.x;
         xPosition = topRightPosition.x - bottomLeftPosition.x;
+        bossPosition = topRightPosition.x;
     }
 }

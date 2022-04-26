@@ -15,7 +15,7 @@ public class EnemyWaveManager
     private void StartNextWave()
     {
         waveNumber += 1;
-        Debug.Log("Starting wave " + waveNumber);
+
         currentWave = new EnemyWave(waveNumber);
 
         currentWave.OnWaveFinished += CurrentWave_OnWaveFinished;

@@ -16,6 +16,11 @@ public class HealthSystem : MonoBehaviour
         ResetHP();
     }
 
+    private void OnEnable()
+    {
+        ResetHP();
+    }
+
     public void ResetHP()
     {
         currentHP = hpAmountTotal;

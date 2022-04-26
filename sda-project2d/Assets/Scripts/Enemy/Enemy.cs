@@ -5,20 +5,20 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private new Rigidbody2D rigidbody;
-    [SerializeField] private HealthSystem healthSystem;
-    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] protected new Rigidbody2D rigidbody;
+    [SerializeField] protected HealthSystem healthSystem;
+    [SerializeField] protected Bullet bulletPrefab;
 
     ObjectPooler objectPooler;
 
     [Header("Behaviour")]
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
 
     [Header("Shooting")]
-    [SerializeField] private float minInterval, maxInterval;
+    [SerializeField] protected float minInterval, maxInterval;
 
     [Header("Other")]
-    [SerializeField] private int pointsValue;
+    [SerializeField] protected int pointsValue;
 
     private float timer = -1f;
 
@@ -63,9 +63,8 @@ public class Enemy : MonoBehaviour
         timer -= Time.deltaTime;
     }
 
-    private void Shoot()
+    protected virtual void Shoot()
     {
-        //Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transform.position, Quaternion.identity);
         GameObject createdBullet = objectPooler.SpawnFromPool(bulletPrefab.name, transform.position, Quaternion.identity);
 
         createdBullet.GetComponent<Bullet>().Shoot(Vector3.left);
@@ -73,9 +72,14 @@ public class Enemy : MonoBehaviour
         OnEnemyShot?.Invoke(this);
     }
 
-    private void FixedUpdate()
+    protected virtual void Move()
     {
         rigidbody.velocity = Vector3.left * speed;
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
     }
 
     private void LateUpdate()

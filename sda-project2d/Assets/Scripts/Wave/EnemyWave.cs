@@ -28,17 +28,13 @@ public class EnemyWave
             return;
         }
 
-        currentTime -= Time.deltaTime;
-
-        if (currentTime < 0)
+        if(waveIdentifier % 3 == 0)
         {
-            var enemy = EnemySpawner.Instance.SpawnEnemy(waveIdentifier);
-            currentTime = spawnInterval;
-
-            enemy.OnEnemyDespawned += Enemy_OnEnemyDespawned;
-
-            spawnedShips++;
-
+            BossWave();
+        }
+        else
+        {
+            NormalWave();
         }
     }
 
@@ -56,5 +52,31 @@ public class EnemyWave
     private void FinishWave()
     {
         OnWaveFinished?.Invoke();
+    }
+
+    private void NormalWave()
+    {
+        currentTime -= Time.deltaTime;
+
+        if (currentTime < 0)
+        {
+            var enemy = EnemySpawner.Instance.SpawnEnemy(waveIdentifier);
+            currentTime = spawnInterval;
+
+            enemy.OnEnemyDespawned += Enemy_OnEnemyDespawned;
+
+            spawnedShips++;
+
+        }
+    }
+
+    private void BossWave()
+    {
+        var boss = EnemySpawner.Instance.SpawnBoss();
+
+        maxShips = 1;
+        boss.OnEnemyDespawned += Enemy_OnEnemyDespawned;
+
+        spawnedShips++;
     }
 }
