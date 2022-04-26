@@ -367,7 +367,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &305043553
 GameObject:
@@ -855,6 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fda8aefc3561e46ba17a0f8e78b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropProbabilityPercentage: 100
 --- !u!1 &391953738
 GameObject:
   m_ObjectHideFlags: 0
@@ -7977,7 +7978,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5122038409521647520, guid: c310754c9bebeed479401fb945fa61a6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5122038409521647520, guid: c310754c9bebeed479401fb945fa61a6, type: 3}
       propertyPath: m_LocalPosition.x

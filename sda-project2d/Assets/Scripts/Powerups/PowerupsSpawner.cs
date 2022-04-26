@@ -8,6 +8,8 @@ public class PowerupsSpawner : MonoBehaviour
 
     private const string HEALTH_POWERUP = "Health_Powerup";
 
+    [SerializeField, Range(0f, 100f)] private float dropProbabilityPercentage = 33f;
+
     void Start()
     {
         GameEvents.OnEnemyDied += GameEvents_OnEnemyDied;
@@ -17,7 +19,7 @@ public class PowerupsSpawner : MonoBehaviour
     {
         var randomFloat = Random.Range(1f, 100f);
 
-        if(randomFloat <= 33f)
+        if(randomFloat <= dropProbabilityPercentage)
         {
             SpawnHealthPowerup(obj.transform.position);
         }
