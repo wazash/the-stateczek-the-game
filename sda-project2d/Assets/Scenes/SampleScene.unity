@@ -8030,7 +8030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897809319322213317, guid: c310754c9bebeed479401fb945fa61a6, type: 3}
       propertyPath: hpAmountTotal
-      value: 99999
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c310754c9bebeed479401fb945fa61a6, type: 3}
