@@ -12,7 +12,7 @@ public class HUDView : BaseView
     [SerializeField] private Image[] lives;
 
     [SerializeField] GameObject pauseText;
-
+    [SerializeField] private Image bossFillHP;
 
     public override void ShowView()
     {

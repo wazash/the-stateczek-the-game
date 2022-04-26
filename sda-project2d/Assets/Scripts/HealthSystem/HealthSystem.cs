@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     private int currentHP;
 
     public int CurrentHP { get { return hpAmountTotal; } }
+    public int HpAmountTotal { get { return hpAmountTotal; } }
 
     private void Awake()
     {
@@ -53,6 +54,13 @@ public class HealthSystem : MonoBehaviour
             currentHP = hpAmountTotal;
         }
 
+        OnHealthChanged?.Invoke(currentHP);
+    }
+
+    public void SetHealth(int hp)
+    {
+        currentHP = hp;
+        hpAmountTotal = hp;
         OnHealthChanged?.Invoke(currentHP);
     }
 }

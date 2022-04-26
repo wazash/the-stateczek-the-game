@@ -12,14 +12,19 @@ public class EnemyWave
     private float spawnInterval;
     private float currentTime;
 
-    private int spawnedShips = 0, maxShips = 3;
+    private int spawnedShips = 0, maxShips = 5;
     private int despawnedShips = 0;
+
+    private int whatWaveBoss = 5;
+    private int bossHealthMultiplier = 5;
 
     public EnemyWave(int waveNumber)
     {
         waveIdentifier = waveNumber;
         spawnInterval = EnemySpawner.Instance.SpawnInterval;
         currentTime = spawnInterval;
+
+        maxShips = waveNumber * 2;
     }
     public void UpdateWave()
     {
@@ -28,7 +33,7 @@ public class EnemyWave
             return;
         }
 
-        if(waveIdentifier % 3 == 0)
+        if(waveIdentifier % whatWaveBoss == 0)
         {
             BossWave();
         }
@@ -76,6 +81,8 @@ public class EnemyWave
 
         maxShips = 1;
         boss.OnEnemyDespawned += Enemy_OnEnemyDespawned;
+
+        boss.HealthSystem.SetHealth(waveIdentifier * bossHealthMultiplier);
 
         spawnedShips++;
     }

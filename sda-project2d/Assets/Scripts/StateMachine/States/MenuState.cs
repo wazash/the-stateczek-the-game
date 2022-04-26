@@ -12,6 +12,8 @@ public class MenuState : BaseState
 
         UIManager.Instance.ShowMainMenu();
         MusicManager.Instance.PlayMusic(MusicManager.Instance.Music.menuMusic);
+
+        PlayerController.Instance.DisablePlayer();
     }
 
     public override void ExitState()

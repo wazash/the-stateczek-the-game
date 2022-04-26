@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         DisablePlayer();
     }
 
-    private void DisablePlayer()
+    public void DisablePlayer()
     {
         playerSprite.SetActive(false);
         isPlayerDead = true;

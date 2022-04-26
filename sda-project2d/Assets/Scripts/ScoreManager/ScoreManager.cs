@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
         score += enemy.PointsValue;
 
         GameEvents.ScoreUpdated(score);
-        GameEvents.HighscoreUpdated();
+        //GameEvents.HighscoreUpdated();
     }
 
     private void GameEvents_OnHighscoreUpdated()

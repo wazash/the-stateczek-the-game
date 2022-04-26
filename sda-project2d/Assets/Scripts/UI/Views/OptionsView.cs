@@ -28,6 +28,10 @@ public class OptionsView : BaseView
         {
             resumeBtn.gameObject.SetActive(false);
         }
+        else
+        {
+            resumeBtn.gameObject.SetActive(true);
+        }
     }
 
     public void OnResumeButtonPressed(bool gamePaused)

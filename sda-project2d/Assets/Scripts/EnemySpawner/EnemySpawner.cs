@@ -78,6 +78,7 @@ public class EnemySpawner : MonoBehaviour
 
         return enemy.GetComponent<Enemy>();
 
+        #region old
         //if (timer < hardEnemiesSpawnStartTime)
         //{
         //    var enemy = objectPooler.SpawnFromPool(enemyPrefabs[0].name, new Vector3(xPosition, Random.Range(yMin, yMax), 0), Quaternion.identity);
@@ -101,7 +102,8 @@ public class EnemySpawner : MonoBehaviour
         //    enemy.GetComponent<Enemy>().Initialize(leftXPosition);
 
         //    return enemy.GetComponent<Enemy>();
-        //}
+        //} 
+        #endregion
     }
 
     public Boss SpawnBoss()

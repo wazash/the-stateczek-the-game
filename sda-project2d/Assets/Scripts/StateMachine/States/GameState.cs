@@ -54,6 +54,8 @@ public class GameState : BaseState
         base.ExitState();
 
         Time.timeScale = 1;
+
+        
     }
     public void CheckPauseButton()
     {

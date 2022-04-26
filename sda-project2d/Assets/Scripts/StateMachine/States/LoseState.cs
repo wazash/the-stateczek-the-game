@@ -11,6 +11,8 @@ public class LoseState : BaseState
         name = "LoseState";
 
         UIManager.Instance.ShowLoseScreen();
+
+        GameEvents.HighscoreUpdated();
     }
 
     public override void ExitState()
