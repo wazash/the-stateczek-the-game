@@ -8,6 +8,8 @@ public class LoseState : BaseState
     {
         base.EnterState(stateMachine);
 
+        name = "LoseState";
+
         UIManager.Instance.ShowLoseScreen();
     }
 

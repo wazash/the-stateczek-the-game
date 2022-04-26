@@ -4,7 +4,7 @@ public class GameState : BaseState
 {
     private float currentTime;
 
-    bool gamePaused = false;
+    private bool gamePaused = false;
 
     private EnemyWaveManager enemyWaveManager;
 
@@ -12,12 +12,16 @@ public class GameState : BaseState
     {
         base.EnterState(stateMachine);
 
+        name = "GameState";
+
         enemyWaveManager = new EnemyWaveManager();
 
         Time.timeScale = 1;
 
         PlayerController.Instance.OnPlayerDied += PlayerInstance_OnPlayerDied;
         PlayerController.Instance.Respawn();
+
+        GameEvents.OnGamePaused += GameEvents_OnGamePaused;
 
         CleanUpScene();
 
@@ -31,6 +35,8 @@ public class GameState : BaseState
         }
     }
 
+
+
     public override void UpdateState()
     {
         base.UpdateState();
@@ -43,12 +49,13 @@ public class GameState : BaseState
     public override void ExitState()
     {
         PlayerController.Instance.OnPlayerDied -= PlayerInstance_OnPlayerDied;
+        GameEvents.OnGamePaused -= GameEvents_OnGamePaused;
 
         base.ExitState();
 
         Time.timeScale = 1;
     }
-    private void CheckPauseButton()
+    public void CheckPauseButton()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -105,6 +112,19 @@ public class GameState : BaseState
         foreach (BasePowerup powerup in powerups)
         {
             powerup.DespawnPowerup();
+        }
+    }
+
+    private void GameEvents_OnGamePaused(bool pauseState)
+    {
+        if (pauseState)
+        {
+            UIManager.Instance.ShowOptionsView();
+        }
+        else
+        {
+            UIManager.Instance.ShowHUD();
+            gamePaused = pauseState;
         }
     }
 }

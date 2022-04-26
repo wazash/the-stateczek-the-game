@@ -8,6 +8,8 @@ public class MenuState : BaseState
     {
         base.EnterState(stateMachine);
 
+        name = "MenuState";
+
         UIManager.Instance.ShowMainMenu();
         MusicManager.Instance.PlayMusic(MusicManager.Instance.Music.menuMusic);
     }

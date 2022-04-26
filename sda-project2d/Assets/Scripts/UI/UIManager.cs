@@ -50,4 +50,14 @@ public class UIManager : MonoBehaviour
 
         views[2].ShowView();
     }
+
+    public void ShowOptionsView()
+    {
+        foreach (var view in views)
+        {
+            view.HideView();
+        }
+
+        views[3].ShowView();
+    }
 }
