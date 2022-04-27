@@ -57,7 +57,17 @@ public class Boss : Enemy
             GameObject createdBullet = ObjectPooler.Instance.SpawnFromPool("EnemyBullet_1", transformPosition.position, Quaternion.identity);
 
             createdBullet.GetComponent<Bullet>().Shoot(Vector3.left);
-            //OnEnemyShot?.Invoke(this);
+        }
+            EnemyShot(this);
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
+
+        if (healthSystem != null)
+        {
+            healthSystem.TakeHit(99);
         }
     }
 }

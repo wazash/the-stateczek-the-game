@@ -28,6 +28,13 @@ public class Enemy : MonoBehaviour
     public int PointsValue { get { return pointsValue; } }
 
     public static event System.Action<Enemy> OnEnemyShot;
+    public static void EnemyShot(Enemy enemy)
+    {
+        if (OnEnemyShot != null)
+        {
+            OnEnemyShot?.Invoke(enemy);
+        }
+    }
     public event System.Action<Enemy> OnEnemyDespawned;
 
     public void Initialize(float leftScreenEdgePosition)
@@ -107,7 +114,7 @@ public class Enemy : MonoBehaviour
         DestroyEnemy();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
 
