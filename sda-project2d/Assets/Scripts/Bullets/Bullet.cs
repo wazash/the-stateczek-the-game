@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
         rigidbody.AddForce(direction * speed, ForceMode2D.Impulse);
 
         //Destroy(gameObject, lifeLength);
-        //Invoke(nameof(DestroyBullet), lifeLength);
+        Invoke(nameof(DestroyBullet), lifeLength);
     }
 
     public void DestroyBullet()
