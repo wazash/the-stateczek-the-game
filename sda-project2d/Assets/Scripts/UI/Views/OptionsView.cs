@@ -34,6 +34,12 @@ public class OptionsView : BaseView
         }
     }
 
+    public override void HideView()
+    {
+        base.HideView();
+        PlayerPrefs.Save();
+    }
+
     public void OnResumeButtonPressed(bool gamePaused)
     {
         Time.timeScale = 1;

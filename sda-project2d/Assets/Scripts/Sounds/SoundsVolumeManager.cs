@@ -26,9 +26,9 @@ public class SoundsVolumeManager : MonoBehaviour
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSfxVolume);
 
-        masterSlider.value = PlayerPrefs.GetFloat(MASTER_KEY, 1f);
-        musicSlider.value = PlayerPrefs.GetFloat(MUSIC_KEY, 1f);
-        sfxSlider.value = PlayerPrefs.GetFloat(SFX_KEY, 1f);
+        masterSlider.value = PlayerPrefs.GetFloat(MASTER_KEY, .5f);
+        musicSlider.value = PlayerPrefs.GetFloat(MUSIC_KEY, .5f);
+        sfxSlider.value = PlayerPrefs.GetFloat(SFX_KEY, .5f);
     }
 
     private void OnDisable()

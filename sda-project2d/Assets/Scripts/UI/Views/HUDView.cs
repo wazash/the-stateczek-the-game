@@ -24,7 +24,7 @@ public class HUDView : BaseView
         GameEvents.OnScoreUpdated += GameEvents_OnScoreUpdated;
         //GameEvents.OnGamePaused += GameEvents_OnGamePaused;
 
-        ScoreManager.Instance.ResetScore();
+        //ScoreManager.Instance.ResetScore();
         GameEvents.ScoreUpdated(ScoreManager.Instance.Score);
 
         pauseText.SetActive(false);

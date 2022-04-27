@@ -28,6 +28,7 @@ public class GameState : BaseState
         EnemySpawner.Instance.ResetTimer();
 
         UIManager.Instance.ShowHUD();
+        ScoreManager.Instance.ResetScore();
 
         if(MusicManager.Instance.MusicSource.clip != MusicManager.Instance.Music.gameplayMusic)
         {

@@ -24,6 +24,7 @@ public class MenuView : BaseView
     public void OnStartGameButtonPressed()
     {
         gameStateMachine.EnterState(new GameState());
+        ScoreManager.Instance.ResetScore();
         HideView();
     }
     public void OnOptionsButtonPressed()
