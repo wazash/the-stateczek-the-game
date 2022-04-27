@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fda8aefc3561e46ba17a0f8e78b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropProbabilityPercentage: 25
+  dropProbabilityPercentage: 100
 --- !u!1 &391953738
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,6 +6564,7 @@ MonoBehaviour:
     hitSFX:
     - {fileID: 8300000, guid: 06f4624f3be864746abba2a3be6c8e7d, type: 3}
     - {fileID: 8300000, guid: 972c54bc4b4506645b25a8bc02ab8e48, type: 3}
+    powerupSFX: {fileID: 8300000, guid: 6dfb622b4de0dad48b1fdeba2d2e4c56, type: 3}
 --- !u!82 &1747673947
 AudioSource:
   m_ObjectHideFlags: 0

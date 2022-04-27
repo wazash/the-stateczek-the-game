@@ -52,4 +52,10 @@ public class GameEvents
 
         OnGamePaused?.Invoke(pauseState);
     }
+
+    public static event Action OnPowerupCollected;
+    public static void PowerupCollected()
+    {
+        OnPowerupCollected?.Invoke();
+    }
 }

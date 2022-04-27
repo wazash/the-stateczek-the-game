@@ -16,6 +16,7 @@ public class MenuState : BaseState
         PlayerController.Instance.DisablePlayer();
 
         GameState.CleanUpScene();
+        SoundsVolumeManager.Instance.SetLowpassValue(22000f);
     }
 
     public override void ExitState()

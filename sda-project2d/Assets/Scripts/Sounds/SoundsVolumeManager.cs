@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class SoundsVolumeManager : MonoBehaviour
 {
-    [SerializeField] private AudioMixer mixer;
+    public static SoundsVolumeManager Instance;
+
+    [SerializeField] public AudioMixer mixer;
 
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
@@ -16,6 +18,7 @@ public class SoundsVolumeManager : MonoBehaviour
     private const string MASTER_KEY = "MasterVolume";
     private const string MUSIC_KEY = "MusicVolume";
     private const string SFX_KEY = "SFXVolume";
+    private const string LOWPASS_KEY = "MusicLowpass";
 
     private void OnEnable()
     {
@@ -39,6 +42,16 @@ public class SoundsVolumeManager : MonoBehaviour
 
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = GetComponent<SoundsVolumeManager>();
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         SetMasterVolume(masterSlider.value);
         SetMusicVolume(musicSlider.value);
         SetSfxVolume(sfxSlider.value);
@@ -56,6 +69,10 @@ public class SoundsVolumeManager : MonoBehaviour
     private void SetSfxVolume(float value)
     {
         mixer.SetFloat (SFX_KEY, Mathf.Log10(value) * 20);
+    }
+    public void SetLowpassValue(float value)
+    {
+        mixer.SetFloat(LOWPASS_KEY, value);
     }
 
 }

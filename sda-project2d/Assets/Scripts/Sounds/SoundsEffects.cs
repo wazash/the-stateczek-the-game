@@ -8,4 +8,5 @@ public class SoundsEffect
     public AudioClip[] shotSFX;
     public AudioClip[] explosionSFX;
     public AudioClip[] hitSFX;
+    public AudioClip powerupSFX;
 }

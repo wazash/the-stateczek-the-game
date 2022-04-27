@@ -21,7 +21,10 @@ public class SoundManager : MonoBehaviour
         GameEvents.OnEnemyDied += GameEvents_OnEnemyDied;
         GameEvents.OnPlayerDied += GameEvents_OnPlayerDied;
         GameEvents.OnEnemyHit += GameEvents_OnEnemyHit;
+        GameEvents.OnPowerupCollected += GameEvents_OnPowerupCollected;
     }
+
+
 
     private void OnDisable()
     {
@@ -92,5 +95,15 @@ public class SoundManager : MonoBehaviour
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.PlayOneShot(sfx.hitSFX[1]);
+    }
+    private void GameEvents_OnPowerupCollected()
+    {
+        PlayPowerupCollected();
+    }
+
+    private void PlayPowerupCollected()
+    {
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
+        audioSource.PlayOneShot(sfx.powerupSFX);
     }
 }

@@ -55,7 +55,7 @@ public class GameState : BaseState
 
         Time.timeScale = 1;
 
-        
+        SoundsVolumeManager.Instance.SetLowpassValue(22000);
     }
     public void CheckPauseButton()
     {
@@ -122,10 +122,12 @@ public class GameState : BaseState
         if (pauseState)
         {
             UIManager.Instance.ShowOptionsView();
+            SoundsVolumeManager.Instance.SetLowpassValue(1000f);
         }
         else
         {
             UIManager.Instance.ShowHUD();
+            SoundsVolumeManager.Instance.SetLowpassValue(22000f);
             gamePaused = pauseState;
         }
     }

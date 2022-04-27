@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class HealthRestorePowerup : BasePowerup
 {
+    private float timeToDespawn = 10f;
+
+    private void OnEnable()
+    {
+        Invoke(nameof(DespawnPowerup), timeToDespawn);
+    }
+
     public override void TriggerEffect(Collider2D collision)
     {
         base.TriggerEffect(collision);
@@ -18,5 +25,6 @@ public class HealthRestorePowerup : BasePowerup
         healthSystem.Heal(3);
 
         DespawnPowerup();
+        GameEvents.PowerupCollected();
     }
 }
