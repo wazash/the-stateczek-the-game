@@ -81,7 +81,7 @@ public class GameState : BaseState
         myStateMachine.EnterState(new LoseState());
     }
 
-    private static void CleanUpScene()
+    public static void CleanUpScene()
     {
         CleanUpEnemies();
 

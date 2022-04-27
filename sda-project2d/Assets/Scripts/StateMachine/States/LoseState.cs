@@ -13,6 +13,8 @@ public class LoseState : BaseState
         UIManager.Instance.ShowLoseScreen();
 
         GameEvents.HighscoreUpdated();
+
+        DestroyBoss();
     }
 
     public override void ExitState()
@@ -23,5 +25,13 @@ public class LoseState : BaseState
     public override void UpdateState()
     {
         base.UpdateState(); 
+    }
+    private static void DestroyBoss()
+    {
+        Boss boss = GameObject.FindObjectOfType<Boss>();
+        if(boss != null)
+        {
+            boss.DestroyEnemy();
+        }
     }
 }

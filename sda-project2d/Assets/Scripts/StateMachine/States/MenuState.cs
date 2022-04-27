@@ -14,6 +14,8 @@ public class MenuState : BaseState
         MusicManager.Instance.PlayMusic(MusicManager.Instance.Music.menuMusic);
 
         PlayerController.Instance.DisablePlayer();
+
+        GameState.CleanUpScene();
     }
 
     public override void ExitState()
