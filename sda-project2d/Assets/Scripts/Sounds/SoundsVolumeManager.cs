@@ -40,7 +40,7 @@ public class SoundsVolumeManager : MonoBehaviour
         masterSlider.onValueChanged.RemoveAllListeners();
     }
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -51,7 +51,10 @@ public class SoundsVolumeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
 
+    private void Start()
+    {
         SetMasterVolume(masterSlider.value);
         SetMusicVolume(musicSlider.value);
         SetSfxVolume(sfxSlider.value);
