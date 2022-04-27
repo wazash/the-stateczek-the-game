@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Enemies prefabs")]
     [SerializeField] private Enemy[] enemyPrefabs;
-    [SerializeField] private Boss bossPrefab;
 
     [Header("Spawn Interval")]
     [SerializeField] private float spawnInterval = 1.5f;
@@ -18,12 +17,6 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float timeToIncreaseSpawnRatio = 2f;
     [SerializeField] private float amountToDecreaseSpawnInterval = 0.3f;
-
-    [Header("New enemies spawn time")]
-    [Tooltip("Time in second, after which stronger enemies will spawn")]
-    [SerializeField] private float hardEnemiesSpawnStartTime = 30.0f;    
-    [Tooltip("Time in second, after which sinus movement enemies will spawn")]
-    [SerializeField] private float sinusEnemiesSpawnStartTime = 30.0f;
 
     [Header("Screen size")]
     private float leftXPosition, xPosition, bossPosition, yMin, yMax;

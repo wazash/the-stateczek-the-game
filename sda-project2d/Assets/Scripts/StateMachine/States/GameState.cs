@@ -12,7 +12,7 @@ public class GameState : BaseState
     {
         base.EnterState(stateMachine);
 
-        name = "GameState";
+        name = StatesNames.GameStateName;
 
         enemyWaveManager = new EnemyWaveManager();
 

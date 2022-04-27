@@ -24,7 +24,7 @@ public class OptionsView : BaseView
 
         EventSystem.current.SetSelectedGameObject(defaultSelectetGameObject);
 
-        if (gameStateMachine.CurrentState.Name == "MenuState")
+        if (gameStateMachine.CurrentState.Name == StatesNames.MenuStateName)
         {
             resumeBtn.gameObject.SetActive(false);
         }
@@ -43,7 +43,7 @@ public class OptionsView : BaseView
 
     public void OnMainMenuButtonPressed()
     {
-        if(gameStateMachine.CurrentState.Name == "GameState")
+        if(gameStateMachine.CurrentState.Name == StatesNames.GameStateName)
         {
             gameStateMachine.EnterState(new MenuState());
         }

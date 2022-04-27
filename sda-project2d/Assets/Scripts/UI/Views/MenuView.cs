@@ -28,7 +28,6 @@ public class MenuView : BaseView
     }
     public void OnOptionsButtonPressed()
     {
-        Debug.LogWarning("Nothing implemented here");
         UIManager.Instance.ShowOptionsView();
     }
     public void OnExitGameButtonPressed()

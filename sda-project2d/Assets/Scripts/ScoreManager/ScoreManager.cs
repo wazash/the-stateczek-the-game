@@ -6,7 +6,9 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    [SerializeField] private int score;
+    [SerializeField] private StateMachine gameStateMachine;
+
+    private int score;
     private int highScore;
 
     public int Score { get { return score; } }
@@ -43,7 +45,10 @@ public class ScoreManager : MonoBehaviour
     {
         score += enemy.PointsValue;
 
-        GameEvents.ScoreUpdated(score);
+        if(gameStateMachine.CurrentState.Name == StatesNames.GameStateName)
+        {
+            GameEvents.ScoreUpdated(score);
+        }
         //GameEvents.HighscoreUpdated();
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [Tooltip("0 - menuView, 1 - hudView, 2 - loseView")]
+    [Tooltip("0 - menuView, 1 - hudView, 2 - loseView, 3 - optionsView")]
     [SerializeField] private BaseView[] views;
 
     public static UIManager Instance;

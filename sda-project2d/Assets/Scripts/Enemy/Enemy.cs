@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         if (healthSystem != null)
         {
             healthSystem.TakeHit(1);
-            this.healthSystem.TakeHit(1);
+            this.healthSystem.TakeHit(99);
         }
     }
 }

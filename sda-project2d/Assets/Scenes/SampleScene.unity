@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fda8aefc3561e46ba17a0f8e78b466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropProbabilityPercentage: 100
+  dropProbabilityPercentage: 25
 --- !u!1 &391953738
 GameObject:
   m_ObjectHideFlags: 0
@@ -6910,12 +6910,9 @@ MonoBehaviour:
   - {fileID: 4260369838799119634, guid: 1375ad98a4f883d4cbd6aa0358b539a7, type: 3}
   - {fileID: 3823698382411591083, guid: b2c41a87267f83843a920c39e3975caa, type: 3}
   - {fileID: 4260369838799119634, guid: 997585063b326a247965be84a44ea0c5, type: 3}
-  bossPrefab: {fileID: 0}
   spawnInterval: 1.5
   timeToIncreaseSpawnRatio: 10
   amountToDecreaseSpawnInterval: 0.1
-  hardEnemiesSpawnStartTime: 10
-  sinusEnemiesSpawnStartTime: 20
 --- !u!4 &1834109673
 Transform:
   m_ObjectHideFlags: 0
@@ -6959,7 +6956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ab1fd14857b7f4a87b1ba38e02d84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  gameStateMachine: {fileID: 634302620}
 --- !u!4 &1883990040
 Transform:
   m_ObjectHideFlags: 0
