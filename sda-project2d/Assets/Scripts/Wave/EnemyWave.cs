@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyWave
 {
-    public event System.Action OnWaveFinished;
+    public event Action OnWaveFinished;
 
     private int waveIdentifier;
 
