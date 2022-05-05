@@ -3,10 +3,13 @@ using UnityEngine;
 public abstract class BaseView : MonoBehaviour
 {
     protected RectTransform rectTransform;
+    public bool isActiveView;
 
     public virtual void ShowView()
     {
         gameObject.SetActive(true);
+
+        isActiveView = true;
     }
 
     public virtual void HideView()
@@ -15,6 +18,8 @@ public abstract class BaseView : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        isActiveView = false;
     }
 
     public RectTransform GetRect()

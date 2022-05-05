@@ -8,13 +8,13 @@ public class LoseState : BaseState
     {
         base.EnterState(stateMachine);
 
+        DestroyBoss();
         name = StatesNames.LoseStateName;
 
         UIManager.Instance.ShowLoseScreen();
 
         GameEvents.HighscoreUpdated();
 
-        DestroyBoss();
     }
 
     public override void ExitState()

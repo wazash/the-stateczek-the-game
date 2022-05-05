@@ -15,7 +15,8 @@ public class EnemyWave
     private int spawnedShips = 0, maxShips = 5;
     private int despawnedShips = 0;
 
-    private int whatWaveBoss = 5;
+    private int whatWaveBoss = 4;
+    public bool isBossWave = false;
     private int bossHealthMultiplier = 5;
 
     public EnemyWave(int waveNumber)
@@ -25,6 +26,8 @@ public class EnemyWave
         currentTime = spawnInterval;
 
         maxShips = waveNumber * 2;
+
+        isBossWave = waveIdentifier % whatWaveBoss == 0;
     }
     public void UpdateWave()
     {
@@ -33,7 +36,7 @@ public class EnemyWave
             return;
         }
 
-        if(waveIdentifier % whatWaveBoss == 0)
+        if(isBossWave)
         {
             BossWave();
         }

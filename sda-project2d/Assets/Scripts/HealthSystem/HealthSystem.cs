@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private int hpAmountTotal;
     private int currentHP;
 
-    public int CurrentHP { get { return hpAmountTotal; } }
+    public int CurrentHP { get { return currentHP; } }
     public int HpAmountTotal { get { return hpAmountTotal; } }
 
     private void Awake()
@@ -53,6 +53,13 @@ public class HealthSystem : MonoBehaviour
         {
             currentHP = hpAmountTotal;
         }
+
+        OnHealthChanged?.Invoke(currentHP);
+    }
+
+    public void HealMax()
+    {
+        currentHP = hpAmountTotal;
 
         OnHealthChanged?.Invoke(currentHP);
     }

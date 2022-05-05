@@ -5,29 +5,33 @@ public class GameState : BaseState
     private float currentTime;
 
     private bool gamePaused = false;
+    private bool canPasue = true;
 
     private EnemyWaveManager enemyWaveManager;
 
     public override void EnterState(StateMachine stateMachine)
     {
+        Time.timeScale = 1;
         base.EnterState(stateMachine);
 
         name = StatesNames.GameStateName;
-
         enemyWaveManager = new EnemyWaveManager();
 
-        Time.timeScale = 1;
-
         PlayerController.Instance.OnPlayerDied += PlayerInstance_OnPlayerDied;
-        PlayerController.Instance.Respawn();
-
         GameEvents.OnGamePaused += GameEvents_OnGamePaused;
+        GameEvents.OnShopOpened += GameEvents_OnShopOpened;
+        GameEvents.OnShopClosed += GameEvents_OnShopClosed;
+
+
+        PlayerController.Instance.Respawn();
 
         CleanUpScene();
 
         EnemySpawner.Instance.ResetTimer();
 
+
         UIManager.Instance.ShowHUD();
+
         ScoreManager.Instance.ResetScore();
 
         if(MusicManager.Instance.MusicSource.clip != MusicManager.Instance.Music.gameplayMusic)
@@ -51,6 +55,9 @@ public class GameState : BaseState
     {
         PlayerController.Instance.OnPlayerDied -= PlayerInstance_OnPlayerDied;
         GameEvents.OnGamePaused -= GameEvents_OnGamePaused;
+        GameEvents.OnShopOpened -= GameEvents_OnShopOpened;
+        GameEvents.OnShopClosed -= GameEvents_OnShopClosed;
+        
 
         base.ExitState();
 
@@ -60,6 +67,11 @@ public class GameState : BaseState
     }
     public void CheckPauseButton()
     {
+        if (!canPasue)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gamePaused)
@@ -122,7 +134,8 @@ public class GameState : BaseState
     {
         if (pauseState)
         {
-            UIManager.Instance.ShowOptionsView();
+            //UIManager.Instance.ShowOptionsView();
+            UIManager.Instance.ShowView(Views.options);
             SoundsVolumeManager.Instance.SetLowpassValue(1000f);
         }
         else
@@ -131,5 +144,14 @@ public class GameState : BaseState
             SoundsVolumeManager.Instance.SetLowpassValue(22000f);
             gamePaused = pauseState;
         }
+    }
+
+    private void GameEvents_OnShopOpened()
+    {
+        canPasue = false;
+    }
+    private void GameEvents_OnShopClosed()
+    {
+        canPasue = true;
     }
 }

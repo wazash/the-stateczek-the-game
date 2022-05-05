@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class GameEvents
 {
@@ -57,5 +58,36 @@ public class GameEvents
     public static void PowerupCollected()
     {
         OnPowerupCollected?.Invoke();
+    }
+
+    public static event Action OnGameStarted;
+    public static void GameStarted()
+    {
+        if(OnGameStarted == null)
+        {
+            return;
+        }
+        OnGameStarted?.Invoke();
+    }
+
+    public static event Action OnShopOpened;
+    public static void ShopOpened()
+    {
+        if(OnShopOpened == null)
+        {
+            return;
+        }
+
+        OnShopOpened?.Invoke();
+    }
+    public static event Action OnShopClosed;
+    public static void ShopClosed()
+    {
+        if (OnShopOpened == null)
+        {
+            return;
+        }
+
+        OnShopClosed?.Invoke();
     }
 }

@@ -7,8 +7,21 @@ public class EnemyWaveManager
     private int waveNumber = 0;
     EnemyWave currentWave;
 
+    public static event System.Action OnNextWave;
+    public static void NextWave()
+    {
+        if(OnNextWave == null)
+        {
+            return;
+        }
+
+        OnNextWave?.Invoke();
+    }
+
     public EnemyWaveManager()
     {
+        OnNextWave += StartNextWave;
+
         StartNextWave();
     }
 
@@ -25,7 +38,14 @@ public class EnemyWaveManager
     {
         currentWave.OnWaveFinished -= CurrentWave_OnWaveFinished;
 
-        StartNextWave();
+        if (currentWave.isBossWave)
+        {
+            UIManager.Instance.ShowView(Views.shop);
+        }
+        else
+        {
+            StartNextWave();
+        }
     }
 
     public void UpdateWave()

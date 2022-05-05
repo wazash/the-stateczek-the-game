@@ -10,12 +10,12 @@ public class MenuState : BaseState
 
         name = StatesNames.MenuStateName;
 
+        GameState.CleanUpScene();
         UIManager.Instance.ShowMainMenu();
         MusicManager.Instance.PlayMusic(MusicManager.Instance.Music.menuMusic);
 
         PlayerController.Instance.DisablePlayer();
 
-        GameState.CleanUpScene();
         SoundsVolumeManager.Instance.SetLowpassValue(22000f);
     }
 

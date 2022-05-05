@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthRestorePowerup : BasePowerup
 {
     private float timeToDespawn = 10f;
+    private int healAmount = 1;
 
     private void OnEnable()
     {
@@ -22,9 +23,14 @@ public class HealthRestorePowerup : BasePowerup
             return;
         }
 
-        healthSystem.Heal(3);
+        healthSystem.Heal(healAmount);
 
         DespawnPowerup();
         GameEvents.PowerupCollected();
+    }
+
+    public void ChangeHealAmount(int value)
+    {
+        healAmount = value;
     }
 }

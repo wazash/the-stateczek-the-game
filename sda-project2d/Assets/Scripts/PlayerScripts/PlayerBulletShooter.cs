@@ -18,6 +18,8 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         playerController.OnPlayerDied += PlayerController_OnPlayerDied;
         playerController.OnPlayerRespawned += PlayerController_OnPlayerRespawned;
+        playerController.OnPlayerDisabled += PlayerController_OnPlayerDisabled;
+        playerController.OnPlayerEnabled += PlayerController_OnPlayerEnabled;
         GameEvents.OnGamePaused += GameEvents_OnGamePaused;
     }
 
@@ -25,6 +27,8 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         playerController.OnPlayerDied -= PlayerController_OnPlayerDied;
         playerController.OnPlayerRespawned -= PlayerController_OnPlayerRespawned;
+        playerController.OnPlayerDisabled -= PlayerController_OnPlayerDisabled;
+        playerController.OnPlayerEnabled -= PlayerController_OnPlayerEnabled;
         GameEvents.OnGamePaused -= GameEvents_OnGamePaused;
     }
 
@@ -59,6 +63,14 @@ public class PlayerBulletShooter : MonoBehaviour
     private void PlayerController_OnPlayerDied()
     {
         areWeaponsDisabled = true;
+    }
+    private void PlayerController_OnPlayerDisabled()
+    {
+        areWeaponsDisabled = true;
+    }
+    private void PlayerController_OnPlayerEnabled()
+    {
+        areWeaponsDisabled = false;
     }
 
     private void Shoot()

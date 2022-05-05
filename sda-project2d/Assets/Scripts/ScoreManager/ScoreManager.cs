@@ -81,4 +81,9 @@ public class ScoreManager : MonoBehaviour
         highScore = 0;
         PlayerPrefs.SetInt(HIGHSCORE_KEY, highScore);
     }
+
+    public void DecreaseScore(int value)
+    {
+        score -= value;
+    }
 }

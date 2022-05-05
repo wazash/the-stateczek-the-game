@@ -23,6 +23,8 @@ public class MenuView : BaseView
 
     public void OnStartGameButtonPressed()
     {
+        GameEvents.GameStarted(); 
+
         gameStateMachine.EnterState(new GameState());
         ScoreManager.Instance.ResetScore();
         HideView();

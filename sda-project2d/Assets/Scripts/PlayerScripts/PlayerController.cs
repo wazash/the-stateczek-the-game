@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 
     public event System.Action OnPlayerRespawned;
     public event System.Action OnPlayerDied;
+    public event System.Action OnPlayerDisabled;
+    public event System.Action OnPlayerEnabled;
 
     [SerializeField] private InputManager inputManager;
     [SerializeField] private new Rigidbody2D rigidbody;
@@ -25,22 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool isPlayerDead = true;
 
     public HealthSystem HealthSystem { get { return healthSystem; } }
-
-    public void Respawn()
-    {
-        transform.position = spawnPosition;
-        healthSystem.ResetHP();
-
-        playerSprite.SetActive(true);
-
-        isPlayerDead = false;
-
-        SwitchPlayerCollider(true);
-
-        OnPlayerRespawned?.Invoke();
-
-        trailRenderer.Clear();
-    }
+    public bool IsPlayerDead { get { return isPlayerDead; } }
 
     private void Awake()
     {
@@ -103,6 +90,7 @@ public class PlayerController : MonoBehaviour
         healthSystem.OnHealthDepleted -= HealthSystem_OnHealthDepleted;
     }
 
+    #region Events methods
     private void HealthSystem_OnHealthDepleted()
     {
         GameEvents.PlayerDied(this);
@@ -111,12 +99,16 @@ public class PlayerController : MonoBehaviour
 
         DisablePlayer();
     }
+    #endregion
 
     public void DisablePlayer()
     {
+        OnPlayerDisabled?.Invoke();
+
         playerSprite.SetActive(false);
         isPlayerDead = true;
         SwitchPlayerCollider(false);
+
     }
 
     private void SwitchPlayerCollider(bool value)
@@ -126,5 +118,34 @@ public class PlayerController : MonoBehaviour
             collider.enabled = value;
         }
     }
+    public void Respawn()
+    {
+        transform.position = spawnPosition;
+        healthSystem.ResetHP();
 
+        playerSprite.SetActive(true);
+
+        isPlayerDead = false;
+
+        SwitchPlayerCollider(true);
+
+        OnPlayerRespawned?.Invoke();
+
+        trailRenderer.Clear();
+    }
+
+    public void EnablePlayer()
+    {
+        OnPlayerEnabled?.Invoke();
+
+        transform.position = spawnPosition;
+
+        playerSprite.SetActive(true);
+
+        isPlayerDead = false;
+
+        SwitchPlayerCollider(true);
+
+        trailRenderer.Clear();
+    }
 }
