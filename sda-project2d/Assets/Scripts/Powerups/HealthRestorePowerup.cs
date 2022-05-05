@@ -7,6 +7,21 @@ public class HealthRestorePowerup : BasePowerup
     private float timeToDespawn = 10f;
     private int healAmount = 1;
 
+    private void Start()
+    {
+        GameEvents.OnGameStarted += GameEvents_OnGameStarted;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnGameStarted -= GameEvents_OnGameStarted;
+    }
+
+    private void GameEvents_OnGameStarted()
+    {
+        ResetHealAmount();
+    }
+
     private void OnEnable()
     {
         Invoke(nameof(DespawnPowerup), timeToDespawn);
@@ -32,5 +47,9 @@ public class HealthRestorePowerup : BasePowerup
     public void ChangeHealAmount(int value)
     {
         healAmount = value;
+    }
+    private void ResetHealAmount()
+    {
+        healAmount = 1;
     }
 }

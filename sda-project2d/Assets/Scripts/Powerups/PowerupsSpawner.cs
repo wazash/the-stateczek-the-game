@@ -8,7 +8,7 @@ public class PowerupsSpawner : MonoBehaviour
 
     private const string HEALTH_POWERUP = "Health_Powerup";
 
-    [SerializeField, Range(0f, 100f)] private float dropProbabilityPercentage = 33f;
+    [SerializeField, Range(0f, 100f)] private float dropProbabilityPercentage = 12.5f;
 
     void Start()
     {
@@ -28,5 +28,10 @@ public class PowerupsSpawner : MonoBehaviour
     private void SpawnHealthPowerup(Vector3 position)
     {
         ObjectPooler.Instance.SpawnFromPool(HEALTH_POWERUP, position, Quaternion.identity);
+    }
+
+    public void ChangeDropProbability(float value)
+    {
+        dropProbabilityPercentage = value;
     }
 }

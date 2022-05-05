@@ -5,7 +5,7 @@ using UnityEngine;
 public class LiveUpItem : ItemBase
 {
     private int liveUpPrice = 5000;
-    private int neededShopLvl = 3;
+    private int neededShopLvl = 1;
 
     private const string ITEM_NAME = "+1 Live";
 

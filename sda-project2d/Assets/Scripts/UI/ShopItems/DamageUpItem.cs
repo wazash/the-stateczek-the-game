@@ -6,7 +6,7 @@ using UnityEngine;
 public class DamageUpItem : ItemBase
 {
     private int damageUpPrice = 10000;
-    private int neededShopLvl = 1;
+    private int neededShopLvl = 2;
 
     private const string ITEM_NAME = "+1 dmg";
 

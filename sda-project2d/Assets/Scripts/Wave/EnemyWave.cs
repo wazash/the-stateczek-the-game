@@ -15,7 +15,7 @@ public class EnemyWave
     private int spawnedShips = 0, maxShips = 5;
     private int despawnedShips = 0;
 
-    private int whatWaveBoss = 4;
+    private int whatWaveBoss = 2;
     public bool isBossWave = false;
     private int bossHealthMultiplier = 5;
 
