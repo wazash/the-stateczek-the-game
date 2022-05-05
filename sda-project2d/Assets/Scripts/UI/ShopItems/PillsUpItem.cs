@@ -34,14 +34,7 @@ public class PillsUpItem : ItemBase
             isItemActive = false;
         }
 
-        if(itemLevel == 2)
-        {
-            itemName = "More Drop";
-        }
-        if(itemLevel == 1 || itemLevel == 3)
-        {
-            itemName = "+1 Heal";
-        }
+        NameChanger();
 
         base.InitItem();
     }
@@ -112,4 +105,15 @@ public class PillsUpItem : ItemBase
         pills = FindObjectsOfType<HealthRestorePowerup>(true);
     }
 
+    private void NameChanger()
+    {
+        if (itemLevel == 2)
+        {
+            itemName = "More Drop";
+        }
+        if (itemLevel == 1 || itemLevel == 3)
+        {
+            itemName = "+1 Heal";
+        }
+    }
 }
