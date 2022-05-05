@@ -12,7 +12,7 @@ public class PillsUpItem : ItemBase
     private HealthRestorePowerup[] pills;
     [SerializeField] private PowerupsSpawner powerupsSpawner;
 
-    private void Start()
+    private void Awake()
     {
         GameEvents.OnGameStarted += GameEvents_OnGameStarted;
     }
@@ -94,7 +94,6 @@ public class PillsUpItem : ItemBase
         {
             pill.ChangeHealAmount(value);
         }
-        Debug.Log("Pills buyed");
     }
 
     private void UpgradeSpawnFrequence(float value)

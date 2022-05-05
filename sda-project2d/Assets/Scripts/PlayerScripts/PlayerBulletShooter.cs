@@ -35,6 +35,8 @@ public class PlayerBulletShooter : MonoBehaviour
     private void Start()
     {
         objectPooler = ObjectPooler.Instance;
+
+        SetShootPositions(1);
     }
 
     private void Update()
@@ -77,11 +79,40 @@ public class PlayerBulletShooter : MonoBehaviour
     {
         foreach (var transformPosition in bulletPositions)
         {
-            //Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transformPosition.position, Quaternion.identity);
-            GameObject createdBullet = objectPooler.SpawnFromPool("PlayerBullet", transformPosition.position, Quaternion.identity);
-            
-            createdBullet.GetComponent<Bullet>().Shoot(Vector3.right);
-            OnPlayerShot?.Invoke();
+            if (transformPosition.gameObject.activeSelf)
+            {
+                //Bullet createdBullet = Instantiate<Bullet>(bulletPrefab, transformPosition.position, Quaternion.identity);
+                GameObject createdBullet = objectPooler.SpawnFromPool("PlayerBullet", transformPosition.position, Quaternion.identity);
+
+                createdBullet.GetComponent<Bullet>().Shoot(Vector3.right);
+                OnPlayerShot?.Invoke();
+            }
+
+        }
+    }
+
+    public void SetShootPositions(int level)
+    {
+        switch (level)
+        {
+            case 1:
+                bulletPositions[0].gameObject.SetActive(true);
+                bulletPositions[1].gameObject.SetActive(false);
+                bulletPositions[2].gameObject.SetActive(false);
+                break;
+            case 2:
+                bulletPositions[0].gameObject.SetActive(false);
+                bulletPositions[1].gameObject.SetActive(true);
+                bulletPositions[2].gameObject.SetActive(true);
+                break;
+            case 3:
+                bulletPositions[0].gameObject.SetActive(true);
+                bulletPositions[1].gameObject.SetActive(true);
+                bulletPositions[2].gameObject.SetActive(true);
+                break;
+            default:
+                Debug.LogWarning("Configration not found!");
+                break;
         }
     }
 }
