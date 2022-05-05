@@ -110,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int GetRandomID(int waveNumber)
     {
-        int waveNumberClamp = Mathf.Clamp(waveNumber, 0, enemyPrefabs.Length);
+        int waveNumberClamp = Mathf.Clamp((waveNumber + 1) / 4, 0, enemyPrefabs.Length);
 
         int result = Random.Range(0, waveNumberClamp);
 

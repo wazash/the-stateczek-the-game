@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class ShopView : BaseView
 {
@@ -10,6 +11,8 @@ public class ShopView : BaseView
     [SerializeField] private Button nextWaveButton;
 
     [SerializeField] private ItemBase[] items;
+
+    [SerializeField] private GameObject defaultSelectetGameObject;
 
     public static int shopShowedUp;
 
@@ -43,6 +46,8 @@ public class ShopView : BaseView
     public override void ShowView()
     {
         base.ShowView();
+
+        EventSystem.current.SetSelectedGameObject(defaultSelectetGameObject);
 
         shopShowedUp++;
         GameEvents.ShopOpened();
