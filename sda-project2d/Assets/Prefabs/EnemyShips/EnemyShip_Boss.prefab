@@ -366,7 +366,7 @@ MonoBehaviour:
   speed: 3
   minInterval: 1
   maxInterval: 2
-  pointsValue: 1000
+  pointsValue: 1250
   shootingPositions:
   - {fileID: 3092956824253662586}
   - {fileID: 1128203907623637694}

@@ -28,6 +28,7 @@ public class ShopView : BaseView
         foreach (var item in items)
         {
             item.OnItemBuy += UpdateMoneyText;
+            item.OnItemBuy += InitItems;
         }
     }
 
@@ -84,5 +85,13 @@ public class ShopView : BaseView
     private void UpdateMoneyText()
     {
         moneyText.text = $"$$ {ScoreManager.Instance.Score}";
+    }
+    private void InitItems()
+    {
+        foreach (ItemBase item in items)
+        {
+            //item.CheckIfEnoughShopLevel();
+            item.CheckIfEnoughMoney();
+        }
     }
 }

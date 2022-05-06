@@ -10,7 +10,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Enemy[] enemyPrefabs;
 
     [Header("Spawn Interval")]
-    [SerializeField] private float spawnInterval = 1.5f;
+    private float spawnInterval = 1.5f;
+    [SerializeField] private float defaultSpawnInterval = 1.5f;
     public float SpawnInterval { get { return spawnInterval; } }
     private float minumumSpawnInterval = 0.3f;
     private float maximumSpawnInterval = 2.0f;
@@ -46,6 +47,13 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         objectPooler = ObjectPooler.Instance;
+        GameEvents.OnGameStarted += GameEvents_OnGameStarted;
+
+        ResetSpawnInterval();
+    }
+    private void OnDestroy()
+    {
+        GameEvents.OnGameStarted -= GameEvents_OnGameStarted;
     }
 
     private void Update()
@@ -135,5 +143,17 @@ public class EnemySpawner : MonoBehaviour
         leftXPosition = bottomLeftPosition.x;
         xPosition = topRightPosition.x - bottomLeftPosition.x;
         bossPosition = topRightPosition.x;
+    }
+
+    private void GameEvents_OnGameStarted()
+    {
+        ResetSpawnInterval();
+    }
+    
+    private void ResetSpawnInterval()
+    {
+        timer = 0;
+        intervalTimer = 0;
+        spawnInterval = defaultSpawnInterval;
     }
 }

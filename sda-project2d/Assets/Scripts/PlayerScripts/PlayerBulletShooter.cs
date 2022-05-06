@@ -21,7 +21,10 @@ public class PlayerBulletShooter : MonoBehaviour
         playerController.OnPlayerDisabled += PlayerController_OnPlayerDisabled;
         playerController.OnPlayerEnabled += PlayerController_OnPlayerEnabled;
         GameEvents.OnGamePaused += GameEvents_OnGamePaused;
+        GameEvents.OnGameStarted += GameEvents_OnGameStarted;
     }
+
+
 
     private void OnDestroy()
     {
@@ -30,6 +33,7 @@ public class PlayerBulletShooter : MonoBehaviour
         playerController.OnPlayerDisabled -= PlayerController_OnPlayerDisabled;
         playerController.OnPlayerEnabled -= PlayerController_OnPlayerEnabled;
         GameEvents.OnGamePaused -= GameEvents_OnGamePaused;
+        GameEvents.OnGameStarted -= GameEvents_OnGameStarted;
     }
 
     private void Start()
@@ -55,6 +59,10 @@ public class PlayerBulletShooter : MonoBehaviour
     private void GameEvents_OnGamePaused(bool pauseState)
     {
         areWeaponsDisabled = pauseState;
+    }
+    private void GameEvents_OnGameStarted()
+    {
+        SetShootPositions(1);
     }
 
     private void PlayerController_OnPlayerRespawned()

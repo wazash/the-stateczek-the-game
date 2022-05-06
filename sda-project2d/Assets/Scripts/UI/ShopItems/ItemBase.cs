@@ -31,6 +31,7 @@ public abstract class ItemBase : MonoBehaviour
     {
         ResetItemLevel();
     }
+
     private void OnEnable()
     {
         InitItem();
@@ -40,16 +41,18 @@ public abstract class ItemBase : MonoBehaviour
     {
         soldGO.SetActive(false);
 
-        if (!isItemActive)
+        CheckIfEnoughShopLevel();
+
+        if (isItemActive)
         {
-            DeactiveItem();
-        }
-        else
-        {
-            ActiveItem();
+            CheckIfEnoughMoney();
+            CheckIfItemSold();
         }
 
-        if(ScoreManager.Instance != null)
+    }
+    public void CheckIfEnoughMoney()
+    {
+        if (ScoreManager.Instance != null)
         {
             if (ScoreManager.Instance.Score < itemPrice)
             {
@@ -60,8 +63,21 @@ public abstract class ItemBase : MonoBehaviour
                 itemButton.interactable = true;
             }
         }
-
-        if(itemLevel > maxItemLevel)
+    }
+    public void CheckIfEnoughShopLevel()
+    {
+        if (isItemActive)
+        {
+            ActiveItem();
+        }
+        else
+        {
+            DeactiveItem();
+        }
+    }
+    protected void CheckIfItemSold()
+    {
+        if (itemLevel > maxItemLevel)
         {
             MakeItemSold();
         }
@@ -69,7 +85,6 @@ public abstract class ItemBase : MonoBehaviour
 
     public virtual void OnItemBuyButton()
     {
-
         itemLevel++;
         ScoreManager.Instance.DecreaseScore(itemPrice);
 
@@ -115,4 +130,6 @@ public abstract class ItemBase : MonoBehaviour
         itemLevel = 1;
         priceGO.SetActive(true);
     }
+
+
 }

@@ -9,6 +9,20 @@ public class LiveUpItem : ItemBase
 
     private const string ITEM_NAME = "+1 Live";
 
+    private void Start()
+    {
+        OnItemBuy += LiveUpItem_OnItemBuy;
+    }
+    private void OnDestroy()
+    {
+        OnItemBuy -= LiveUpItem_OnItemBuy;
+    }
+
+    private void LiveUpItem_OnItemBuy()
+    {
+        CheckIfEnoughMoney();
+    }
+
     public override void InitItem()
     {
         UpdatePrice();
@@ -27,9 +41,9 @@ public class LiveUpItem : ItemBase
 
     public override void OnItemBuyButton()
     {
-        base.OnItemBuyButton();
         AddLive();
         UpdatePrice();
+        base.OnItemBuyButton();
     }
 
     protected override void ActiveItem()
